@@ -1,0 +1,5 @@
+Diagrama Tablas (DT): https://uccl0-my.sharepoint.com/personal/maximiliano_valdivia_uc_cl/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fmaximiliano%5Fvaldivia%5Fuc%5Fcl%2FDocuments%2F2023%2D2%2FBase%20de%20Datos%2FProyect%2FEntrega%203%2F%28SI%29%20Diagrama%20Tablas%20E3%2Edrawio&parent=%2Fpersonal%2Fmaximiliano%5Fvaldivia%5Fuc%5Fcl%2FDocuments%2F2023%2D2%2FBase%20de%20Datos%2FProyect%2FEntrega%203
+Diagrama Relacional (DR): https://app.diagrams.net/#Wb!vsx1hjmRgkGkfzZksvvbjifKoxjrxcRPjgYzVZA3ZP3DoQpj7J4rQKuIDecaNPwY%2F01LODBWJJ2TXMAUM7QSNHL4TFFYQCB7DGD
+
+Usuarios:
+ -> En el DT y DR los usuarios no tienen el atributo 'fecha_nacimiento'
