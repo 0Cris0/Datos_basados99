@@ -1,3 +1,8 @@
+<?php
+// Iniciar sesión
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -39,12 +44,15 @@
 
 
   <?php if(empty($_SESSION['username']))?>
-    <!--i no está asignada la variable mostrar form para ingresar-->
-    <form method="POST">
-    <input type="text" name="username">
-    <input type="password" name="password">
-    ‹button type="submit" name="login"›Login‹/button>
-    </form>
+      <!--i no está asignada la variable mostrar form para ingresar-->
+
+      <form align="center" action="/Sites/consultas/manejo_inicio_sesion.php" method="post">
+          <p>Por favor, ingrese sus datos:</p><br><br>
+          <p>Nombre de usuario: </p><input type="text" name="username"><br><br>
+          <p>Contraseña: </p><input type="password" name="password"><br><br>
+          <br/><br/>
+          <input type="submit" value="Registrarse">
+      </div>
   </div>
 
   <section class='contenido_contacto'>

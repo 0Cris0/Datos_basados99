@@ -12,6 +12,15 @@ body {
   font-family: sans-serif
 }
 
+input{
+  background-color: #3f3f3f;
+  color: white;
+  width: auto;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
 .parte_superior{
   display: flex;
   align-items: center;
