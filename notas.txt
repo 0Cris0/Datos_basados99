@@ -3,3 +3,7 @@ Diagrama Relacional (DR): https://app.diagrams.net/#Wb!vsx1hjmRgkGkfzZksvvbjifKo
 
 Usuarios:
  -> En el DT y DR los usuarios no tienen el atributo 'fecha_nacimiento'
+
+Tablas:
+- Peliculas, revisar proveedores y catalogo. Revisar pagos. Revisar subscripciones. Que esté todo independiente y funcional
+- Videojuegos, agregué lo q pude pero faltan tablas.
