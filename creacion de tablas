@@ -2,7 +2,7 @@
 -- Tablas de usuarios --
 ------------------------
 CREATE TABLE usuarios(
-    id_usuario INT,
+    id_usuario INT NOT NULL,
     nombre VARCHAR(255),
     mail VARCHAR(255),
     contrasena VARCHAR(255),
@@ -14,6 +14,7 @@ CREATE TABLE usuarios(
 );
 
 
+
 CREATE TABLE videojuegos_usuario(
     id_usuario INT,
     id_juego INT,
@@ -23,6 +24,47 @@ CREATE TABLE videojuegos_usuario(
     FOREIGN KEY(id_juego) REFERENCES videojuegos(id_juego),
     CHECK (horas_juego >= 0)
 );
+
+
+--------------------------
+-- Tablas de multimedia --
+--------------------------
+
+CREATE TABLE peliculas(
+    id_pelicula SERIAL NOT NULL,
+    titulo VARCHAR(255),
+    duracion INT,
+    clasificacion VARCHAR(255),
+    puntacion FLOAT,
+    anho INT,
+    PRIMARY KEY (id_pelicula)
+);
+
+CREATE TABLE series(
+    id_serie SERIAL NOT NULL,
+    titulo VARCHAR(255),
+    clasificacion VARCHAR(255),
+    puntuacion FLOAT,
+    anho INT,
+    PRIMARY KEY (id_serie)
+);
+
+CREATE TABLE capitulos(
+    id_capitulo SERIAL NOT NULL,
+    id_serie INT,
+    titulo VARCHAR(255),
+    puntuacion FLOAT,
+    duracion INT,
+    numero INT,
+    PRIMARY KEY (id_capitulo),
+    FOREIGN KEY (id_serie) REFERENCES series(id_serie) ON DELETE CASCADE
+);
+
+CREATE TABLE videojuegos(
+    id_juego SERIAL NOT NULL,
+    PRIMARY KEY (id_juego)
+)
+
 
 ---------------------------
 -- Tablas de videojuegos --
