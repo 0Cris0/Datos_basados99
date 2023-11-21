@@ -221,4 +221,3 @@ CREATE TABLE generos_juego(
     FOREIGN KEY (id_juego) REFERENCES videojuegos(id_juego) ON DELETE CASCADE,
     FOREIGN KEY (genero) REFERENCES generos(genero) ON DELETE CASCADE,
 );
-
