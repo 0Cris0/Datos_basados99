@@ -7,10 +7,10 @@ CREATE TABLE usuarios(
     mail VARCHAR(255),
     contrasena VARCHAR(255),
     username VARCHAR (255),
-    fecha_nacimiento DATE
+    fecha_nacimiento DATE,
 
-    PRIMARY KEY (id_usuario),
-    CHECK (mail LIKE '%@%')
+    CONSTRAINT usuarios_pk PRIMARY KEY (id_usuario),
+    CONSTRAINT has@ CHECK (mail LIKE '%@%')
 );
 
 --------------------------
@@ -23,7 +23,8 @@ CREATE TABLE peliculas(
     clasificacion VARCHAR(255),
     puntacion FLOAT,
     anho INT,
-    PRIMARY KEY (id_pelicula)
+
+    CONSTRAINT peliculas_pk PRIMARY KEY (id_pelicula)
 );
 
 CREATE TABLE series(
@@ -32,7 +33,8 @@ CREATE TABLE series(
     clasificacion VARCHAR(255),
     puntuacion FLOAT,
     anho INT,
-    PRIMARY KEY (id_serie)
+
+    CONSTRAINT series_pk PRIMARY KEY (id_serie)
 );
 
 CREATE TABLE capitulos(
@@ -42,8 +44,9 @@ CREATE TABLE capitulos(
     puntuacion FLOAT,
     duracion INT,
     numero INT,
-    PRIMARY KEY (id_capitulo),
-    FOREIGN KEY (id_serie) REFERENCES series(id_serie) ON DELETE CASCADE
+
+    CONSTRAINT capitulos_pk PRIMARY KEY (id_capitulo),
+    CONSTRAINT serie_id_fk FOREIGN KEY (id_serie) REFERENCES series(id_serie) ON DELETE CASCADE
 );
 
 ---------------------------
@@ -51,17 +54,18 @@ CREATE TABLE capitulos(
 ---------------------------
 CREATE TABLE videojuegos(
     id_juego SERIAL NOT NULL,
-    PRIMARY KEY (id_juego)
+    CONSTRAINT videojuegos_pk PRIMARY KEY (id_juego)
 );
 
 CREATE TABLE videojuegos_usuario(
     id_usuario INT,
     id_juego INT,
     horas_juego FLOAT,
-    PRIMARY KEY (id_usuario, id_juego),
-    FOREIGN KEY(id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
-    FOREIGN KEY(id_juego) REFERENCES videojuegos(id_juego),
-    CHECK (horas_juego >= 0)
+
+    CONSTRAINT videojuegos_usuario_pk PRIMARY KEY (id_usuario, id_juego),
+    CONSTRAINT id_usuario_fk FOREIGN KEY(id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
+    CONSTRAINT id_juego_fk FOREIGN KEY(id_juego) REFERENCES videojuegos(id_juego),
+    CONSTRAINT horas_juego_geq0 CHECK (horas_juego >= 0)
 );
 
 CREATE TABLE resenas(
@@ -71,9 +75,10 @@ CREATE TABLE resenas(
     texto TEXT,
     id_usuario INT,
     id_juego INT,
-    PRIMARY KEY (id_res),
-    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
-    FOREIGN KEY (id_juego) REFERENCES videojuegos(id_juegos) ON DELETE CASCADE
+
+    CONSTRAINT resenas_pk PRIMARY KEY (id_res),
+    CONSTRAINT id_usuario_fk FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
+    CONSTRAINT id_juego_fk FOREIGN KEY (id_juego) REFERENCES videojuegos(id_juegos) ON DELETE CASCADE
 );
 
 ---------------------------
@@ -83,21 +88,26 @@ CREATE TABLE proveedores_multimedia(
     id_prov SERIAL NOT NULL,
     nombre VARCHAR(255),
     costo INT,
-    PRIMARY KEY (id_prov)
+
+    CONSTRAINT proveedores_multimedia_pk PRIMARY KEY (id_prov)
 );
 
 CREATE TABLE peliculas_proveedores_multimedia(
     id_pelicula INT NOT NULL,
     id_prov INT NOT NULL,
-    FOREIGN KEY (id_pelicula) REFERENCES peliculas(id_pelicula) ON DELETE CASCADE,
-    FOREIGN KEY (id_prov) REFERENCES proveedores_multimedia(id_prov) ON DELETE CASCADE
+
+    CONSTRAINT peliculas_proveedores_multimedia_pk PRIMARY KEY (id_pelicula, id_prov)
+    CONSTRAINT id_pelicula_fk FOREIGN KEY (id_pelicula) REFERENCES peliculas(id_pelicula) ON DELETE CASCADE,
+    CONSTRAINT id_prov_fk FOREIGN KEY (id_prov) REFERENCES proveedores_multimedia(id_prov) ON DELETE CASCADE
 );
 
 CREATE TABLE series_proveedores_multimedia(
     id_serie INT NOT NULL,
     id_prov INT NOT NULL
-    FOREIGN KEY (id_serie) REFERENCES series(id_serie) ON DELETE CASCADE,
-    FOREIGN KEY (id_prov) REFERENCES proveedores_multimedia(id_prov) ON DELETE CASCADE
+
+    CONSTRAINT series_proveedores_multimedia_pk PRIMARY KEY (id_serie, id_prov)
+    CONSTRAINT id_serie_fk FOREIGN KEY (id_serie) REFERENCES series(id_serie) ON DELETE CASCADE,
+    CONSTRAINT id_prov_fk FOREIGN KEY (id_prov) REFERENCES proveedores_multimedia(id_prov) ON DELETE CASCADE
 );
 
 CREATE TABLE arriendo_peliculas_proveedores(
@@ -105,6 +115,7 @@ CREATE TABLE arriendo_peliculas_proveedores(
     id_prov INT NOT NULL,
     precio INT,
     disponibilidad INT,
+    
     FOREIGN KEY (id_pelicula) REFERENCES peliculas(id_pelicula) ON DELETE CASCADE,
     FOREIGN KEY (id_prov) REFERENCES proveedores_multimedia(id_prov) ON DELETE CASCADE
 );
