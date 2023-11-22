@@ -1,4 +1,4 @@
-subs_id,uid,pro_id,estado,fecha_inicio
+subs_id,id_usuario,id_prov,estado,fecha_inicio
 1,29,8,cancelada,2021-06-08
 2,48,16,activa,2020-09-27
 3,48,20,activa,2020-09-21

@@ -1,4 +1,4 @@
-id_res,id_usuario,id_videojuego,veredicto,titulo,texto
+id_res,id_usuario,id_juego,veredicto,titulo,texto
 1,9,126.0,negativo,Muy Malo,Este juego viene directamente de Mordor
 2,9,6036.0,negativo,Y pensar que me perdí la boda de mi hija por este juego,Nooo el juego
 3,9,26758.0,positivo,"No me calza el precio con la calidad del juego, debería costar mucho más","Todos hablan del New World pero no tienen ni idea de este juego, ni colas tiene"

@@ -1,4 +1,4 @@
-pago_id,monto,fecha,uid
+id_pago,monto,fecha,id_usuario
 1,6500,2021-06-14,102
 2,6500,2021-07-14,102
 3,4000,2021-03-21,102
