@@ -10,7 +10,7 @@ CREATE TABLE usuarios(
     fecha_nacimiento DATE,
 
     CONSTRAINT usuarios_pk PRIMARY KEY (id_usuario),
-    CONSTRAINT has@ CHECK (mail LIKE '%@%')
+    CONSTRAINT hasat CHECK (mail LIKE '%@%')
 );
 
 --------------------------
@@ -78,7 +78,7 @@ CREATE TABLE resenas(
 
     CONSTRAINT resenas_pk PRIMARY KEY (id_res),
     CONSTRAINT id_usuario_fk FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
-    CONSTRAINT id_juego_fk FOREIGN KEY (id_juego) REFERENCES videojuegos(id_juegos) ON DELETE CASCADE
+    CONSTRAINT id_juego_fk FOREIGN KEY (id_juego) REFERENCES videojuegos(id_juego) ON DELETE CASCADE
 );
 
 ---------------------------
@@ -96,16 +96,16 @@ CREATE TABLE peliculas_proveedores_multimedia(
     id_pelicula INT NOT NULL,
     id_prov INT NOT NULL,
 
-    CONSTRAINT peliculas_proveedores_multimedia_pk PRIMARY KEY (id_pelicula, id_prov)
+    CONSTRAINT peliculas_proveedores_multimedia_pk PRIMARY KEY (id_pelicula, id_prov),
     CONSTRAINT id_pelicula_fk FOREIGN KEY (id_pelicula) REFERENCES peliculas(id_pelicula) ON DELETE CASCADE,
     CONSTRAINT id_prov_fk FOREIGN KEY (id_prov) REFERENCES proveedores_multimedia(id_prov) ON DELETE CASCADE
 );
 
 CREATE TABLE series_proveedores_multimedia(
     id_serie INT NOT NULL,
-    id_prov INT NOT NULL
+    id_prov INT NOT NULL,
 
-    CONSTRAINT series_proveedores_multimedia_pk PRIMARY KEY (id_serie, id_prov)
+    CONSTRAINT series_proveedores_multimedia_pk PRIMARY KEY (id_serie, id_prov),
     CONSTRAINT id_serie_fk FOREIGN KEY (id_serie) REFERENCES series(id_serie) ON DELETE CASCADE,
     CONSTRAINT id_prov_fk FOREIGN KEY (id_prov) REFERENCES proveedores_multimedia(id_prov) ON DELETE CASCADE
 );
@@ -128,15 +128,17 @@ CREATE TABLE pagos(
     id_usuario INT,
     monto INT,
     fecha DATE,
-    PRIMARY KEY (id_pagos),
-    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
+
+    PRIMARY KEY (id_pago),
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE
 );
 
 CREATE TABLE pagos_peliculas(
     id_pago INT,
     id_prov INT,
     id_pelicula INT,
-    FOREIGN KEY (id_pago) REFERENCES pagos(id_pagos) ON DELETE CASCADE,
+
+    FOREIGN KEY (id_pago) REFERENCES pagos(id_pago) ON DELETE CASCADE,
     FOREIGN KEY (id_prov) REFERENCES proveedores_multimedia(id_prov) ON DELETE CASCADE,
     FOREIGN KEY (id_pelicula) REFERENCES peliculas(id_pelicula) ON DELETE CASCADE
 );
@@ -144,9 +146,10 @@ CREATE TABLE pagos_peliculas(
 CREATE TABLE pagos_subscripciones(
     id_pago INT,
     id_sub INT,
-    FOREIGN KEY (id_pago) REFERENCES pagos(id_pagos) ON DELETE CASCADE,
+
+    FOREIGN KEY (id_pago) REFERENCES pagos(id_pago) ON DELETE CASCADE,
     FOREIGN KEY (id_sub) REFERENCES subscripciones_peliculas(id_sub) ON DELETE CASCADE
-)
+);
 
 ------------------------------
 -- Tablas de Subscripciones --
@@ -157,6 +160,7 @@ CREATE TABLE subscripciones_peliculas(
     id_prov INT,
     estado VARCHAR(255),
     fecha_inicio DATE,
+
     PRIMARY KEY (id_sub),
     FOREIGN KEY (id_prov) REFERENCES proveedores_multimedia(id_prov) ON DELETE CASCADE,
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE
@@ -165,6 +169,7 @@ CREATE TABLE subscripciones_peliculas(
 CREATE TABLE subscripciones_peliculas_terminadas(
     id_sub INT,
     fecha_termino DATE,
+
     FOREIGN KEY (id_sub) REFERENCES subscripciones_peliculas(id_sub) ON DELETE CASCADE
 );
 
@@ -173,7 +178,8 @@ CREATE TABLE subscripciones_juego(
     fecha_termino DATE,
     fecha_lanzamiento DATE,
     id_juego INT,
-    PRIMARY KEY (id_sub)
+
+    PRIMARY KEY (id_sub),
     FOREIGN KEY (id_juego) REFERENCES videojuegos(id_juego) ON DELETE CASCADE
 );
 
@@ -184,51 +190,60 @@ CREATE TABLE subscripciones_juego(
 CREATE TABLE visualizaciones_peliculas(
     id_usuario INT NOT NULL,
     id_pelicula INT NOT NULL,
-    fecha DATE
+    fecha DATE,
+
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
-    FOREIGN KEY (id_pelicula) REFERENCES peliculas(id_pelicula),
-)
+    FOREIGN KEY (id_pelicula) REFERENCES peliculas(id_pelicula)
+);
+
 
 CREATE TABLE visualizaciones_capitulos(
     id_usuario INT NOT NULL,
     id_capitulo INT NOT NULL,
-    fecha DATE
+    fecha DATE,
+
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
-    FOREIGN KEY (id_capitulo) REFERENCES capitulos(id_capitulo),
-)
+    FOREIGN KEY (id_capitulo) REFERENCES capitulos(id_capitulo)
+);
 
 ----------------------
 -- Tablas de Genero --
 -----------------------
 CREATE TABLE generos(
     genero VARCHAR(255) NOT NULL,
+
     PRIMARY KEY (genero)
 );
+
 
 CREATE TABLE generos_subgeneros(
     genero VARCHAR(255) NOT NULL,
     subgenero VARCHAR(255) NOT NULL,
+
     FOREIGN KEY (genero) REFERENCES generos(genero) ON DELETE CASCADE,
     FOREIGN KEY (subgenero) REFERENCES generos(genero) ON DELETE CASCADE
 );
+
 
 CREATE TABLE generos_pelicula(
     id_pelicula INT NOT NULL,
     genero VARCHAR(255) NOT NULL,
     FOREIGN KEY (id_pelicula) REFERENCES peliculas(id_pelicula) ON DELETE CASCADE,
-    FOREIGN KEY (genero) REFERENCES generos(genero) ON DELETE CASCADE,
+    FOREIGN KEY (genero) REFERENCES generos(genero) ON DELETE CASCADE
 );
+
 
 CREATE TABLE generos_serie(
     id_serie INT NOT NULL,
     genero VARCHAR(255) NOT NULL,
     FOREIGN KEY (id_serie) REFERENCES series(id_serie) ON DELETE CASCADE,
-    FOREIGN KEY (genero) REFERENCES generos(genero) ON DELETE CASCADE,
+    FOREIGN KEY (genero) REFERENCES generos(genero) ON DELETE CASCADE
 );
+
 
 CREATE TABLE generos_juego(
     id_juego INT NOT NULL,
     genero VARCHAR(255) NOT NULL,
     FOREIGN KEY (id_juego) REFERENCES videojuegos(id_juego) ON DELETE CASCADE,
-    FOREIGN KEY (genero) REFERENCES generos(genero) ON DELETE CASCADE,
+    FOREIGN KEY (genero) REFERENCES generos(genero) ON DELETE CASCADE
 );
