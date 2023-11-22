@@ -187,5 +187,33 @@ FROM (
     WHERE p.id_peli == vp.id_peli
     ORDER BY vp.n_visualizaciones) as datos
 
+-- =================================
+-- buscador de contenido (serie o película) en proveedor
 
+$n_proveedor 
 
+$n_contenido 
+
+-- Caso serie 
+SELECT EXISTS( 
+	SELECT 1 
+    FROM series_proveedor_peli as spp, serie as s, proveedores_peli as pp 
+    WHERE pp.nombre == $n_proveedor 
+    AND s.serie == $n_contenido 
+    AND spp.id_prov == pp.id 
+    AND s.id_serie == spp.id_serie 
+) 
+
+-- Caso película 
+
+SELECT EXISTS( 
+	SELECT 1 
+    FROM pelis_proveedor_peli as ppp, pelicula as p, proveedores_peli as pp 
+    WHERE pp.nombre == $n_proveedor 
+    AND p.titulo == $n_contenido 
+    AND ppp.id_prov == pp.id 
+    AND p.id_peli == ppp.id_peli 
+) 
+
+-- Hacerlo case insensitive
+-- Aplicar matching parcial
