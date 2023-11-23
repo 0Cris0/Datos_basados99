@@ -130,15 +130,18 @@ CREATE OR REPLACE FUNCTION detalle_proveedor(id_proveedor integer)
 RETURNS TABLE(monto integer, cantidad_pelis integer, cantidad_series integer) AS $$
 BEGIN 
     -- Parte 1: Obtención del monto del valor de subscripción
+
+        -- DUDA: EL costo es el del propio proveedores peli???
+
     -- Parte 2: Cantidad de pelis
     -- Parte 3: Cantidad de series
     RETURN QUERY EXECUTE'
         SELECT m.monto, p.cantidad_pelis, s.cantidad_series
         FROM 
             (
-                SELECT UNIQUE(psp.monto) as monto
-                FROM  subscripciones_pelis as sp, pagos_sub_peli as psp 
-                WHERE sp.id_prove == id_proveedor) as m,
+                SELECT pp.costo as monto
+                FROM  proveedores_peli as pp
+                WHERE pp.id_prove == id_proveedor) as m,
             (
                 SELECT COUNT(p.titulo) as cantidad_pelis
                 FROM pelis_proveedor_peli as ppp, peliculas as p 
@@ -217,3 +220,108 @@ SELECT EXISTS(
 
 -- Hacerlo case insensitive
 -- Aplicar matching parcial
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Compras
+-- =================================
+-- listado de peliculas y juegos de PU
+
+-- Caso juego
+	SELECT vp.titulo -- Ver si entregar más datos o no
+    FROM videojuegos_pun as vp
+
+-- Caso película 
+
+	SELECT p.titulo -- Ver si entregar más datos o no
+    FROM arriendos_proveedor_peli as app, peliculas as p
+    WHERE app.id_peli == p.id_peli
+
+
+-- =================================
+-- detalle de un juego seleccionado
+
+$id_juego
+
+    SELECT * -- Aquí no saco nada con pedir info específica ya que necesito todo
+    FROM proveedores_juego as pj, juegos_proveedor_juego as jpj, videojuegos_pun as vp
+    WHERE pj.id_prov == jpj.id_prov
+    AND jpj.id_juego == $id_juego
+    AND jpj.id_juego == vp.id_juego
+
+
+-- detalle de un pelicula seleccionada
+
+$id_peli
+
+    SELECT * -- Aquí no saco nada con pedir info específica ya que necesito todo
+    FROM proveedores_peli as pp, arriendos_proveedor_peli as app, peliculas as p
+    WHERE p.id_peli == app.id_peli
+    AND pp.id_prov == app.id_prov
+    AND app.id_peli == $id_peli
+
+
+        -- Con ambos debería trabajar el cómo se muestra
+
+-- =================================
+-- compra videojuego
+$id_usuario
+$id_juego
+$id_prov
+$precio
+$precio_preorden -- ???? Irá????
+
+    -- Ver que la subscripción esté activa
+        -- Cómo hacer esto?? --> Qué tablas ocupar
+    
+    -- 1] Compruebo que la subs esté vigente
+    SELECT 
+    --FROM subscripciones_juego as sj
+    --WHERE sj.fecha_termino >= CONVERT(DATE,GETDATE())
+    --AND 
+
+
+    -- 2] Compruebo que ya no lo tenga el usuario
+    SELECT EXISTS(
+        SELECT 1
+        FROM videojuegos_usuario as vu
+        WHERE vu.id_juego == $id_juego
+    )
+
+
+
+-- =================================
+-- compra pelicula 
+$id_usuario
+$id_peli
+$id_prov
+$precio
+$disponibilidad -- Para qué sirve????????
+
+    -- 1] Compruebo que la subs esté vigente
+    SELECT EXISTS(
+        SELECT 1
+        FROM subscripciones_pelis_terminadas as spt
+        WHERE spt.fecha_termino >= CONVERT(DATE,GETDATE())
+    )
+
+    -- 2] Compruebo que ya no lo tenga el usuario
+
+        -- COMO PUEDO SABER ESO?????????????'''
+
+    -- 3] Generar compra
