@@ -27,13 +27,13 @@
     </div>
 
     <nav class='barra_nav'>
-      <a href= "/Sites/menu/menu.php">Menu</a>
+      <a href= "/Sites/index.php">Inicio</a>
     </nav>
   </div>
 
   <header class='contenedor_header'>
     <div class='titulo'>
-      <h1>Defrosting Multimedia</h1>
+      <h1>Login</h1>
     </div>
   </header>
 
@@ -51,7 +51,7 @@
           <p>Nombre de usuario: </p><input type="text" name="username"><br><br>
           <p>Contraseña: </p><input type="password" name="password"><br><br>
           <br/><br/>
-          <input type="submit" value="Registrarse">
+          <input type="submit" value="Login">
       </div>
   </div>
 

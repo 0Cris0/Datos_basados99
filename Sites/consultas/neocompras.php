@@ -31,11 +31,12 @@
 
   <header class='contenedor_header'>
     <div class='titulo'>
-      <h1>Mi perfil</h1>
+      <h1>Compras</h1>
     </div>
   </header>
 
-    <h2 class='sub-titulo'>Mis datos personales</h2>
+    <h2 class='sub-titulo'>Películas de pago único</h2>
+
 
     <?php
         #Llama a conexión, crea el objeto PDO y obtiene la variable $db
@@ -64,59 +65,76 @@
         $result = $db -> prepare($query);
         $result -> execute();
         $juegos = $result -> fetchAll();
-        
+
         # Debe redirigir al perfil
         # en caso de ser correcto
 
         # O mandar al inicio de sesión si falló
         */
-    ?>
-    <section class='contenedor_general'>
-            <table class='tabla'>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Email</th>
-                    <th>Username</th>
-                    <th>Edad</th>
-                    <th>Horas jugando</th>
-                    <th>Horas viendo streaming</th>
-                </tr>
-                <tr>
-                    <td>**nombre</td>
-                    <td>**email</td>
-                    <td>**edad</td>
-                    <td>**username</td>
-                    <td>**tiempo juegos</td>
-                    <td>**tiempo streaming</td>
-                </tr>
-            </table>
-    </section>
 
-    <br>
-    <h2 class='sub-titulo'>Subscripciones activas</h2>
+    ?>
+
     <br>
     <section class='contenedor_general'>
     <table class='tabla'>
             <tr>
-                <th>Tipo</th>
-                <th>Contenido</th>
-                <th>Estado</th>
-                <th>Fecha de inicio</th>
-
+                <th>Titulo</th>
+                <th>Duración</th>
+                <th>Clasificación</th>
+                <th>Puntuación</th>
+                <th>Año</th>
+                <th>Ver</th>
             </tr>
             <tr>
-                <td>**juego/peli</td>
-                <td>**juego/proveedor</td>
-                <td>**estado</td>
-                <td>**fecha de inicio</td>
-
+                <td>**titulo</td>
+                <td>**duracion</td>
+                <td>**clasificacion</td>
+                <td>**puntuación</td>
+                <td>**año</td>
+                <td>
+                    <form action="/Sites/consultas/neomostrar_proveedor.php">
+                    <input type="submit" value="Ver" />
+                    </form>
+                </td>
             </tr>
         </table>
         
     </section>
+
+    <br>
+    <h2 class='sub-titulo'>Juegos de pago único</h2>
+    <br>
+    <section class='contenedor_general'>
+    <table class='tabla'>
+            <tr>
+                <th>Titulo</th>
+                <th>Puntuación</th>
+                <th>Clasificación</th>
+                <th>Fecha de lanzamiento</th>
+                <th>Beneficio de preorden</th>
+                <th>Ver</th>
+            </tr>
+            <tr>
+                <td>**titulo</td>
+                <td>**puntuación</td>
+                <td>**clasificacion</td>
+                <td>**fecha_lanzamiento</td>
+                <td>**beneficio</td>
+                <td>
+                    <form action="/Sites/consultas/neomostrar_proveedor.php">
+                    <input type="submit" value="Ver" />
+                    </form>
+                </td>
+            </tr>
+        </table>
+        
+    </section>
+
     <br>
     <form action="/Sites/menu/menu.php">
       <input type="submit" value="Menu" />
     </form>
 
-</body>
+
+
+    </body>

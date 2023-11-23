@@ -36,31 +36,37 @@
     </div>
   </header>
 
-  <div class='contenido_paginas'>
+  <div class='contenido_menu'>
 
     <h2 class='sub-titulo'> Menu</h2>
 
-    <div class='opcion_pagina'>
-      <h3>Subscripciones de streaming</h3>      
-    </div>
+    <br>
+    <form action="/Sites/consultas/neoperfil.php">
+      <input type="submit" value="Perfil" />
+    </form>
+    
+    <form action="/Sites/consultas/neosubs.php">
+      <input type="submit" value="Subscripciones" />
+    </form>
 
-    <div class='opcion_pagina'>
-      <h3>Películas  de pago único</h3>      
-    </div>
+    <form action="/Sites/consultas/neocompras.php">
+      <input type="submit" value="Compras" />
+    </form>
 
-    <div class='opcion_pagina'>
-      <h3>Juegos de pago único</h3>      
-    </div>
+    <form action="#">
+      <input type="submit" value="Consulta estructurada" />
+    </form>
 
-    <div class='opcion_pagina'>
-      <h3>[** Consulta estructurada]</h3>      
-    </div>
+    <form action="#">
+      <input type="submit" value="Funcionalidad extra" />
+    </form>
 
-    <div class='opcion_pagina'>
-      <h3>[** Funcionalidad extra]</h3>      
-    </div>
-    <br/>
-  </div>
+    <form action="/Sites/index.php">
+      <input type="submit" value="Inicio" />
+    </form>
+</div>
+    
+
 
   </body>
 </html>

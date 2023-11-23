@@ -4,6 +4,7 @@
   border: 0;
   font-size: 100%;
   vertical-align: baseline;
+  color: whitesmoke;
 }
 body {
   text-align: center;
@@ -12,7 +13,7 @@ body {
   font-family: sans-serif
 }
 
-input{
+input, button{
   background-color: #3f3f3f;
   color: white;
   width: auto;
@@ -82,6 +83,8 @@ input{
   background: url("/Sites/imagenes/patron.jpg");
 }
 
+
+
 .titulo{ 
   
   opacity: 1;
@@ -135,9 +138,62 @@ p, li{
   opacity: 0.24;
 }
 
+.error{
+  
+  color: red;
+}
 
+.contenedor_general{
+  padding: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
 
+.contenedor_menu{
+  
+  display:flex;
+  
 
+  margin: auto;
+  height: auto;
+    
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
+
+table{
+  gap: 0px 0px; 
+  border-collapse: collapse;
+  background: gray;
+}
+
+th{
+  border: 3px solid whitesmoke;
+  color: whitesmoke;
+  padding: 15px;
+  background-color: rgb(163, 49, 49);
+  gap: 0px 0px; 
+}
+td{
+  border: 3px solid whitesmoke;
+  color: whitesmoke;
+  padding: 15px;
+  gap: 0px 0px; 
+  text-align: center;
+}
+
+td button{
+  background-color: #3f3f3f;
+  color: white;
+  width: auto;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
 
 
 

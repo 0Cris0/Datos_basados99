@@ -17,6 +17,7 @@
     <!-- para que una consulta.php pueda importarlo -->
 
 </head>
+    
 
 <body>
   <div class="parte_superior">
@@ -31,11 +32,11 @@
 
   <header class='contenedor_header'>
     <div class='titulo'>
-      <h1>Mi perfil</h1>
+      <h1>Subscripciones</h1>
     </div>
   </header>
 
-    <h2 class='sub-titulo'>Mis datos personales</h2>
+    <h2 class='sub-titulo'>Proveedores de streaming</h2>
 
     <?php
         #Llama a conexión, crea el objeto PDO y obtiene la variable $db
@@ -64,52 +65,27 @@
         $result = $db -> prepare($query);
         $result -> execute();
         $juegos = $result -> fetchAll();
-        
+
         # Debe redirigir al perfil
         # en caso de ser correcto
 
         # O mandar al inicio de sesión si falló
         */
     ?>
-    <section class='contenedor_general'>
-            <table class='tabla'>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Email</th>
-                    <th>Username</th>
-                    <th>Edad</th>
-                    <th>Horas jugando</th>
-                    <th>Horas viendo streaming</th>
-                </tr>
-                <tr>
-                    <td>**nombre</td>
-                    <td>**email</td>
-                    <td>**edad</td>
-                    <td>**username</td>
-                    <td>**tiempo juegos</td>
-                    <td>**tiempo streaming</td>
-                </tr>
-            </table>
-    </section>
-
-    <br>
-    <h2 class='sub-titulo'>Subscripciones activas</h2>
     <br>
     <section class='contenedor_general'>
     <table class='tabla'>
             <tr>
-                <th>Tipo</th>
-                <th>Contenido</th>
-                <th>Estado</th>
-                <th>Fecha de inicio</th>
-
+                <th>Nombre proveedor</th>
+                <th>Ver provedor</th>
             </tr>
             <tr>
-                <td>**juego/peli</td>
-                <td>**juego/proveedor</td>
-                <td>**estado</td>
-                <td>**fecha de inicio</td>
-
+                <td>**nombre proveedor</td>
+                <td>
+                    <form action="/Sites/consultas/neomostrar_proveedor.php">
+                    <input type="submit" value="Ver" />
+                    </form>
+                </td>
             </tr>
         </table>
         
@@ -119,4 +95,6 @@
       <input type="submit" value="Menu" />
     </form>
 
-</body>
+
+
+    </body>

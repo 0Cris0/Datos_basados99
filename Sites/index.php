@@ -7,7 +7,7 @@
     </div>
 
     <nav class='barra_nav'>
-      <a href= "menu/menu.php">Menu</a>
+      <!--a href= "menu/menu.php">Menu</a-->
       <a href= "login/login.php">Iniciar sesión</a>
       <a href= "login/registro.php">Registrarse</a>
     </nav>
@@ -43,6 +43,14 @@
   </section>
 
   <section class='contenido_contacto'>
+    <form action="login/login.php">
+      <input type="submit" value="Login" />
+    </form>
+    <br>
+    <form action="login/registro.php">
+      <input type="submit" value="Registrarse" />
+    </form>
+    <br>
   </section>
 
   <div class='parte_inferior'>
