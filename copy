@@ -1,0 +1,132 @@
+hola buenas
+
+
+\copy videojuegos(id_juego) FROM 'Entrega3/dataset/videojuegos.csv' DELIMITER ',' CSV HEADER;
+
+\copy videojuegos_pun(id_juego,titulo,puntuacion,clasificacion,fecha_lanzamiento,beneficio) FROM 'Entrega3/dataset/videojuegos_pun.csv' DELIMITER ',' CSV HEADER;
+
+\copy videojuegos_sub(id_juego,titulo,puntuacion,clasificacion,fecha_lanzamiento,mensualidad) FROM 'Entrega3/dataset/videojuegos_sub.csv' DELIMITER ',' CSV HEADER;
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+---------------------------
+-- Tablas de proveedores --
+---------------------------
+\copy proveedores(id_prov,nombre,plataforma) FROM 'Entrega3/dataset/proveedores.csv' DELIMITER ',' CSV HEADER;
+
+\copy juegos_proveedor(id_prov,id_juego,precio,precio_preorden) FROM 'Entrega3/dataset/juegos_proveedor.csv' DELIMITER ',' CSV HEADER;
+
+\copy proveedores_usuario(id_usuario,id_prov) FROM 'Entrega3/dataset/proveedores_usuario.csv' DELIMITER ',' CSV HEADER;
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+------------------------
+-- Tablas de usuarios --
+------------------------
+\copy usuarios(id_usuario,nombre,mail,contrasena,username) FROM 'Entrega3/dataset/usuarios.csv' DELIMITER ',' CSV HEADER;
+
+\copy videojuegos_usuario(id_usuario,id_juego,horas_juego) FROM 'Entrega3/dataset/videojuegos_usuario.csv' DELIMITER ',' CSV HEADER;
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+------------------------
+-- Tablas de generos --
+------------------------
+\copy generos(genero) FROM 'Entrega3/dataset/generos.csv' DELIMITER ',' CSV HEADER;
+
+\copy generos_videojuego(id_juego,genero) FROM 'Entrega3/dataset/generos_videojuego.csv' DELIMITER ',' CSV HEADER;
+
+\copy generos_subgeneros(genero,subgenero) FROM 'Entrega3/dataset/generos_subgeneros.csv' DELIMITER ',' CSV HEADER;
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+----------------------
+-- Tablas de pagos --
+----------------------
+\copy pagos(id_pago,monto,fecha,id_usuario) FROM 'Entrega3/dataset/pagos.csv' DELIMITER ',' CSV HEADER;
+
+\copy pagos_sub(id_pago,id_sub) FROM 'Entrega3/dataset/pagos_sub.csv' DELIMITER ',' CSV HEADER;
+
+\copy pagos_pun(id_pago,preorden,id_proveedor,id_juego) FROM 'Entrega3/dataset/pagos_pun.csv' DELIMITER ',' CSV HEADER;
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------
+-- Tablas varias --
+-------------------
+\copy subscripciones(id_sub,estado,fecha_inicio,id_usuario,fecha_termino,id_juego) FROM 'Entrega3/dataset/subscripciones.csv' DELIMITER ',' CSV HEADER;
+
+\copy resenas(id_usuario,id_juego,veredicto,titulo,texto) FROM 'Entrega3/dataset/resenas.csv' DELIMITER ',' CSV HEADER;
+
+
+
+
+^^^^^^^^^
+---------
+
+
+-------
+
+capitulo: cid,sid,titulo,duracion,temporada
+catalogo_p_arriendo: pro_id,pid,precio,disponibilidad
+catalogo_p_incluida: pro_id,pid
+catalogo_s: pro_id,sid
+genero_peli: pid,genero
+genero_serie: sid,genero
+genero_subgenero: ,genero,subgenero
+genero_juego: id_videojuego,nombre
+juegos_proveedor_juego: id_proveedor,id_videojuego,precio,precio_preorden
+pago_a_peli: pago_id,pid,pro_id
+pago_a_pun: pago_id,preorden,id_proveedor,id_videojuego
+pago_subs_juego: pago_id,subs_id
+pago_subs_peli: pago_id,subs_id
+pagos: pago_id,monto,fecha,uid
+pelicula: pid,titulo,duracion,clasificacion,puntuacion,a√±o
+proveedor_juego: id_proveedor,nombre,plataforma
+proveedor_ps: pro_id,nombre,costo
+resenas: id_res,id_usuario,id_videojuego,veredicto,titulo,texto
+serie: sid,serie,clasificacion,puntuacion,a√±o
+subscripcion_ps_terminada: subs_id,fecha_termino
+subscripcion_ps: subs_id,uid,pro_id,estado,fecha_inicio
+
+
+subscripcion_vj(subs_id,estado,fecha_inicio,id_usuario,fecha_termino,id_videojuego,mensualidad)
+usuario(uid,nombre,mail,password,username,fecha_nacimiento)
+usuarios_proveedor_juego(id_usuario,id_proveedor)
+videojuego_pun(id_videojuego,titulo,puntuacion,clasificacion,fecha_de_lanzamiento,beneficio_preorden)
+videojuego_sub(id_videojuego,titulo,puntuacion,clasificacion,fecha_de_lanzamiento,mensualidad)
+
+
+videojuego(id_videojuego)
+videojuegos_usuario(id_usuario,id_videojuego,fecha v,cantidad)
+Visualizacion_c(uid,cid,fecha)
+visualizacion_p(uid,pid,fecha)
+---------
+
+
+\copy capitulo(cid,sid,titulo,duracion,temporada) FROM 'Entrega3/dataset/capitulo.csv' DELIMITER ',' CSV HEADER
+\copy catalogo_p_arriendo(pro_id,pid,precio,disponibilidad) FROM 'Entrega3/dataset/catalogo_p_arriendo.csv' DELIMITER ',' CSV HEADER
+\copy catalogo_p_incluida(pro_id,pid) FROM 'Entrega3/dataset/catalogo_p_incluida.csv' DELIMITER ',' CSV HEADER
+\copy catalogo_s(pro_id,sid) FROM 'Entrega3/dataset/catalogo_s.csv' DELIMITER ',' CSV HEADER
+\copy genero_peli(pid,genero) FROM 'Entrega3/dataset/genero_peli.csv' DELIMITER ',' CSV HEADER
+\copy genero_serie(sid,genero) FROM 'Entrega3/dataset/genero_serie.csv' DELIMITER ',' CSV HEADER
+\copy genero_juego(id_videojuego,nombre) FROM 'Entrega3/dataset/genero_juego.csv' DELIMITER ',' CSV HEADER
+\copy genero_subgenero(genero,subgenero) FROM 'Entrega3/dataset/genero_subgenero.csv' DELIMITER ',' CSV HEADER
+\copy pago_a_peli(pago_id,pid,pro_id) FROM 'Entrega3/dataset/pago_a_peli.csv' DELIMITER ',' CSV HEADER
+\copy juegos_proveedor_juego(id_proveedor,id_videojuego,precio,precio_preorden) FROM 'Entrega3/dataset/juegos_proveedor_juego.csv' DELIMITER ',' CSV HEADER
+\copy pago_a_pun(pago_id,preorden,id_proveedor,id_videojuego) FROM 'Entrega3/dataset/pago_a_pun.csv' DELIMITER ',' CSV HEADER
+\copy pago_subs_juego(pago_id,subs_id) FROM 'Entrega3/dataset/pago_subs_juego.csv' DELIMITER ',' CSV HEADER
+\copy pago_subs_peli(pago_id,subs_id) FROM 'Entrega3/dataset/pago_subs_peli.csv' DELIMITER ',' CSV HEADER
+\copy pagos(pago_id,monto,fecha,uid) FROM 'Entrega3/dataset/pagos.csv' DELIMITER ',' CSV HEADER
+\copy pelicula(pid,titulo,duracion,clasificacion,puntuacion,a√±o) FROM 'Entrega3/dataset/pelicula.csv' DELIMITER ',' CSV HEADER
+\copy proveedor_juego(id_proveedor,nombre,plataforma) FROM 'Entrega3/dataset/proveedor_juego.csv' DELIMITER ',' CSV HEADER
+\copy proveedor_ps(pro_id,nombre,costo) FROM 'Entrega3/dataset/proveedor_ps.csv' DELIMITER ',' CSV HEADER
+\copy resenas(id_res,id_usuario,id_videojuego,veredicto,titulo,texto) FROM 'Entrega3/dataset/resenas.csv' DELIMITER ',' CSV HEADER
+\copy serie(sid,serie,clasificacion,puntuacion,a√±o) FROM 'Entrega3/dataset/serie.csv' DELIMITER ',' CSV HEADER
+\copy subscripcion_ps_terminada(subs_id,fecha_termino) FROM 'Entrega3/dataset/subscripcion_ps_terminadacsv' DELIMITER ',' CSV HEADER
+\copy subscripcion_ps(subs_id,uid,pro_id,estado,fecha_inicio) FROM 'Entrega3/dataset/subscripcion_ps.csv' DELIMITER ',' CSV HEADER
+\copy subscripcion_vj(subs_id,estado,fecha_inicio,id_usuario,fecha_termino,id_videojuego,mensualidad) FROM 'Entrega3/dataset/subscripcion_vj.csv' DELIMITER ',' CSV HEADER
+\copy usuario(uid,nombre,mail,password,username,fecha_nacimiento) FROM 'Entrega3/dataset/usuario.csv' DELIMITER ',' CSV HEADER
+\copy usuarios_proveedor_juego(id_usuario,id_proveedor) FROM 'Entrega3/dataset/usuarios_proveedor_juego.csv' DELIMITER ',' CSV HEADER
+\copy videojuego_pun(id_videojuego,titulo,puntuacion,clasificacion,fecha_de_lanzamiento,beneficio_preorden) FROM 'Entrega3/dataset/videojuego_pun.csv' DELIMITER ',' CSV HEADER
+\copy videojuego_sub(id_videojuego,titulo,puntuacion,clasificacion,fecha_de_lanzamiento,mensualidad) FROM 'Entrega3/dataset/videojuego_sub.csv' DELIMITER ',' CSV HEADER
+\copy videojuego(id_videojuego) FROM 'Entrega3/dataset/videojuego.csv' DELIMITER ',' CSV HEADER
+\copy videojuegos_usuario(id_usuario,id_videojuego,fecha v,cantidad) FROM 'Entrega3/dataset/videojuegos_usuario.csv' DELIMITER ',' CSV HEADER
+\copy visualizacion_c(uid,cid,fecha)() FROM 'Entrega3/dataset/visualizacion_c.csv' DELIMITER ',' CSV HEADER
+\copy visualizacion_p(uid,pid,fecha) FROM 'Entrega3/dataset/visualizacion_p.csv' DELIMITER ',' CSV HEADER
+
