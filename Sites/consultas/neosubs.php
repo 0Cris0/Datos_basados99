@@ -12,7 +12,7 @@
 
     <!-- para que sea index.php pueda importarlo -->
     <!-- para que sea index.php pueda importarlo -->
-    <link rel="stylesheet" href="../Sites/styles/neoindex.css"> 
+    <link rel="stylesheet" href="../styles/neoindex.css"> 
 
     <!-- para que una consulta.php pueda importarlo -->
 
@@ -22,11 +22,11 @@
 <body>
   <div class="parte_superior">
     <div class='logo'>
-      <a href="../Sites/index.php"><img src="../Sites/imagenes/logo2.png"></a>
+      <a href="../index.php"><img src="../imagenes/logo2.png"></a>
     </div>
 
     <nav class='barra_nav'>
-      <a href= "/Sites/menu/menu.php">Menu</a>
+      <a href= "../menu/menu.php">Menu</a>
     </nav>
   </div>
 
@@ -41,36 +41,26 @@
     <?php
         #Llama a conexión, crea el objeto PDO y obtiene la variable $db
         
-        /*
+        
         require("../config/conexion.php");
 
-        $username = $_POST["username"];
-        $password = $_POST["password"];
-
-        $query = "";
-        # Obtener qué usuario es
-        # Obtener su información (nombre, email, username)
-        # Mosttar edad
-        # Listado de subs activas en juegos o streaming
-            # Ordenado por fecha
-        # Suma de horas viendo contenido y aparte jugando
-
-
-        # Hacer que esto sea vista materializada con actualización diaria
+        $username = $_SESSION["username"];
         
 
-        # De ser correcto $_SESSION["username"] = $username_ingresado
+        $query_prov = "SELECT * FROM proveedores_ps";
+        # id_prov, nombre, costo
 
-        #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados
-        $result = $db -> prepare($query);
+        $result = $db -> prepare($query_prov);
         $result -> execute();
-        $juegos = $result -> fetchAll();
+        $proveedores = $result -> fetchAll();
+
+
 
         # Debe redirigir al perfil
         # en caso de ser correcto
 
         # O mandar al inicio de sesión si falló
-        */
+        
     ?>
     <br>
     <section class='contenedor_general'>
@@ -79,19 +69,25 @@
                 <th>Nombre proveedor</th>
                 <th>Ver provedor</th>
             </tr>
-            <tr>
-                <td>**nombre proveedor</td>
-                <td>
-                    <form action="/Sites/consultas/neomostrar_proveedor.php">
-                    <input type="submit" value="Ver" />
+            <?php
+                  // echo $pokemones;
+                  # id_prov, nombre, costo
+                  foreach ($proveedores as $j) {
+                    echo "tr> <td>$j[1]</td> 
+                    <td>
+                    <form action='../consultas/neomostrar_proveedor.php'>
+                    <input type='text' name='id_proveedor, value=$j[2]'>
+                    <input type='submit' value='Ver' />
                     </form>
                 </td>
-            </tr>
+                </tr>";
+                }
+                ?>
         </table>
         
     </section>
     <br>
-    <form action="/Sites/menu/menu.php">
+    <form action="../menu/menu.php">
       <input type="submit" value="Menu" />
     </form>
 

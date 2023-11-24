@@ -41,36 +41,19 @@
     <?php
         #Llama a conexión, crea el objeto PDO y obtiene la variable $db
         
-        /*
+        
         require("../config/conexion.php");
 
-        $username = $_POST["username"];
-        $password = $_POST["password"];
+        $username = $_SESSION["username"];
+        $id_proveedor = $_POST["id_proveedor"];
 
-        $query = "";
-        # Obtener qué usuario es
-        # Obtener su información (nombre, email, username)
-        # Mosttar edad
-        # Listado de subs activas en juegos o streaming
-            # Ordenado por fecha
-        # Suma de horas viendo contenido y aparte jugando
+        $query_detalle_prov = "detalle_proveedor($id_proveedor)";
+        # monto, cantidad_pelis_cantidad_series
 
-
-        # Hacer que esto sea vista materializada con actualización diaria
-        
-
-        # De ser correcto $_SESSION["username"] = $username_ingresado
-
-        #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados
-        $result = $db -> prepare($query);
+        $result = $db -> prepare($query_detalle_prov);
         $result -> execute();
-        $juegos = $result -> fetchAll();
-
-        # Debe redirigir al perfil
-        # en caso de ser correcto
-
-        # O mandar al inicio de sesión si falló
-      */
+        $detalle_prov = $result -> fetchAll();
+      
       
     ?>
 
@@ -82,21 +65,27 @@
                 <th>Cantidad de películas</th>
                 <th>Cantidad de series</th>
             </tr>
-            <tr>
-                <td>**costo proveedor</td>
-                <td>**cantidad de películas</td>
-                <td>**cantidad de series</td>
-            </tr>
+
+            <?php
+                  // echo $pokemones;
+                  # monto, cantidad_pelis, cantidad_series
+                  foreach ($detalle_prov as $j) {
+                    echo "<tr> <td>$j[0]</td> <td>$j[1]</td> <td>$j[2]</td> </tr>";
+                }
+                ?>
         </table>     
         
     </section>
     <br>
     
-    <form action="/Sites/consultas/neomostrar_top.php">
+    <form action="../consultas/neomostrar_top.php">
+      <?php foreach ($detalle_prov as $j) {
+        echo "<input type='text' name='id_proveedor, value=$j[2]'>";
+      } ?>
       <input type="submit" value="Mostrar Top 3" />
     </form>
     <br>
-    <form action="/Sites/menu/menu.php">
+    <form action="../menu/menu.php">
       <input type="submit" value="Menu" />
     </form>
     </body>

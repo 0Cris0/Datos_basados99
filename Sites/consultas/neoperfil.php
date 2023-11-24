@@ -25,7 +25,7 @@
     </div>
 
     <nav class='barra_nav'>
-      <a href= "/menu/menu.php">Menu</a>
+      <a href= "../menu/menu.php">Menu</a>
     </nav>
   </div>
 
@@ -43,7 +43,7 @@
         
         require("../config/conexion.php");
 
-        $username = $_POST["username"];
+        $username = $_SESSION["username"];
 
         $query_perfil = "info_perfil";
         $query_subs_j = "subs_j_perfil";

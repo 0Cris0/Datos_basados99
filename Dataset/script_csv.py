@@ -201,6 +201,8 @@ suscripciones_p.rename(columns = {'id':'subs_id'}, inplace = True)
 
 
 pagos_p = pd.read_excel(pares, 'pagos')
+pagos_p['subs_id'] = pagos_p['subs_id'].apply(lambda x: np.int64(x) if not pd.isna(x) else np.nan)
+pagos_p['subs_id'] = pagos_p['subs_id'].astype('Int64')
 
 
 proveedores_p = pd.read_excel(pares, 'proveedores')
