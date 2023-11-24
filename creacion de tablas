@@ -145,7 +145,7 @@ CREATE TABLE catalogo_j(
     id_juego INT NOT NULL,
     id_prov INT NOT NULL,
     precio INT NOT NULL,
-    precio_preorden INT
+    precio_preorden INT,
 
     PRIMARY KEY (id_juego, id_prov),
     FOREIGN KEY(id_juego) REFERENCES videojuegos(id_juego) ON DELETE CASCADE,
@@ -194,7 +194,7 @@ CREATE TABLE pagos(
     fecha DATE,
 
     PRIMARY KEY (id_pago),
-    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
     CHECK (monto > 0)
 );
 
