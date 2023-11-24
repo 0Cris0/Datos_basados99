@@ -14,6 +14,7 @@ import os
 """##Create DB Impares
 """
 
+#cparriendo precio dispo
 
 path_impares = os.path.join(*['Datos sin tratar', 'impares.xlsx'])
 impares = pd.ExcelFile('impares.xlsx')
@@ -22,10 +23,34 @@ generos_i = pd.read_excel(impares, 'genero')
 
 multimedia_i = pd.read_excel(impares, 'multimedia')
 
+multimedia_i['pid'] = multimedia_i['pid'].apply(lambda x: np.int64(x) if not pd.isna(x) else np.nan)
+multimedia_i['pid'] = multimedia_i['pid'].astype('Int64')
+multimedia_i['sid'] = multimedia_i['sid'].apply(lambda x: np.int64(x) if not pd.isna(x) else np.nan)
+multimedia_i['sid'] = multimedia_i['sid'].astype('Int64')
+multimedia_i['cid'] = multimedia_i['cid'].apply(lambda x: np.int64(x) if not pd.isna(x) else np.nan)
+multimedia_i['cid'] = multimedia_i['cid'].astype('Int64')
+multimedia_i['numero'] = multimedia_i['numero'].apply(lambda x: np.int64(x) if not pd.isna(x) else np.nan)
+multimedia_i['numero'] = multimedia_i['numero'].astype('Int64')
+
 pago_i = pd.read_excel(impares, 'pago')
+pago_i['subs_id'] = pago_i['subs_id'].apply(lambda x: np.int64(x) if not pd.isna(x) else np.nan)
+pago_i['subs_id'] = pago_i['subs_id'].astype('Int64')
+pago_i['pid'] = pago_i['pid'].apply(lambda x: np.int64(x) if not pd.isna(x) else np.nan)
+pago_i['pid'] = pago_i['pid'].astype('Int64')
+pago_i['pro_id'] = pago_i['pro_id'].apply(lambda x: np.int64(x) if not pd.isna(x) else np.nan)
+pago_i['pro_id'] = pago_i['pro_id'].astype('Int64')
+
 
 proveedores_i = pd.read_excel(impares, 'proveedores')
 proveedores_i.rename(columns = {'id':'pro_id'}, inplace = True)
+proveedores_i['sid'] = proveedores_i['sid'].apply(lambda x: np.int64(x) if not pd.isna(x) else np.nan)
+proveedores_i['sid'] = proveedores_i['sid'].astype('Int64')
+proveedores_i['pid'] = proveedores_i['pid'].apply(lambda x: np.int64(x) if not pd.isna(x) else np.nan)
+proveedores_i['pid'] = proveedores_i['pid'].astype('Int64')
+proveedores_i['precio'] = proveedores_i['precio'].apply(lambda x: np.int64(x) if not pd.isna(x) else np.nan)
+proveedores_i['precio'] = proveedores_i['precio'].astype('Int64')
+proveedores_i['disponibilidad'] = proveedores_i['disponibilidad'].apply(lambda x: np.int64(x) if not pd.isna(x) else np.nan)
+proveedores_i['disponibilidad'] = proveedores_i['disponibilidad'].astype('Int64')
 
 suscripciones_i = pd.read_excel(impares, 'suscripciones')
 suscripciones_i.rename(columns = {'id':'subs_id'}, inplace = True)
@@ -34,6 +59,10 @@ usuarios_i = pd.read_excel(impares, 'usuarios')
 usuarios_i.rename(columns = {'id':'uid'}, inplace = True)
 
 visualizacion_i = pd.read_excel(impares, 'visualizaciones')
+visualizacion_i['cid'] = visualizacion_i['cid'].apply(lambda x: np.int64(x) if not pd.isna(x) else np.nan)
+visualizacion_i['cid'] = visualizacion_i['cid'].astype('Int64')
+visualizacion_i['pid'] = visualizacion_i['pid'].apply(lambda x: np.int64(x) if not pd.isna(x) else np.nan)
+visualizacion_i['pid'] = visualizacion_i['pid'].astype('Int64')
 
 """##Edit DB Impares"""
 
@@ -176,18 +205,27 @@ pagos_p = pd.read_excel(pares, 'pagos')
 
 proveedores_p = pd.read_excel(pares, 'proveedores')
 proveedores_p.rename(columns = {'id':'id_proveedor'}, inplace = True)
+proveedores_p['precio'] = proveedores_p['precio'].apply(lambda x: np.int64(x) if not pd.isna(x) else np.nan)
+proveedores_p['precio'] = proveedores_p['precio'].astype('Int64')
+proveedores_p['precio_preorden'] = proveedores_p['precio_preorden'].apply(lambda x: np.int64(x) if not pd.isna(x) else np.nan)
+proveedores_p['precio_preorden'] = proveedores_p['precio_preorden'].astype('Int64')
+
 
 
 usuario_proveedor_p = pd.read_excel(pares, 'usuario proveedor')
 
 
 usuario_actividades_p = pd.read_excel(pares, 'usuario actividades')
+usuario_actividades_p['id_videojuego'] = usuario_actividades_p['id_videojuego'].apply(lambda x: np.int64(x) if not pd.isna(x) else np.nan)
+usuario_actividades_p['id_videojuego'] = usuario_actividades_p['id_videojuego'].astype('Int64')
 
 
 genero_v_p = pd.read_excel(pares, 'videojuego genero')
 
 
 videojuego_p = pd.read_excel(pares, 'videojuego')
+videojuego_p['mensualidad'] = videojuego_p['mensualidad'].apply(lambda x: np.int64(x) if not pd.isna(x) else np.nan)
+videojuego_p['mensualidad'] = videojuego_p['mensualidad'].astype('Int64')
 
 
 """##Edit DB pares"""
