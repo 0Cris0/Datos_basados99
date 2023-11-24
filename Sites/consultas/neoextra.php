@@ -32,36 +32,23 @@
 
   <header class='contenedor_header'>
     <div class='titulo'>
-      <h1>Defrosting Multimedia</h1>
+      <h1>[WIP]</h1>
     </div>
   </header>
 
   <div class='contenido_menu'>
 
-    <h2 class='sub-titulo'> Menu</h2>
+    <h2 class='sub-titulo'>[WIP / Easter egg]</h2>
 
+    <img src="../Sites/imagenes/defrost-webp">
     <br>
-    <form action="../consultas/neoperfil.php">
-      <input type="submit" value="Perfil" />
-    </form>
-    
-    <form action="../consultas/neosubs.php">
-      <input type="submit" value="Subscripciones" />
+    <form action="#">
+      <input type="submit" value="[WIP]" />
     </form>
 
-    <form action="../consultas/neocompras.php">
-      <input type="submit" value="Compras" />
+    <form action="../menu/menu.php">
+      <input type="submit" value="Menu" />
     </form>
-
-    <form action="../consultas/neoconsulta_e.php">
-      <input type="submit" value="Consulta estructurada" />
-    </form>
-
-    <form action="../consultas/neoextra.php">
-      <input type="submit" value="Funcionalidad extra" />
-    </form>
-
-
   </div>
 
   <section class='contenido_contacto'>

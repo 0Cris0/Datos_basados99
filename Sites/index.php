@@ -8,8 +8,8 @@
 
     <nav class='barra_nav'>
       <!--a href= "menu/menu.php">Menu</a-->
-      <a href= "/login/login.php">Iniciar sesión</a>
-      <a href= "/login/registro.php">Registrarse</a>
+      <a href= "../Sites/login/login.php">Iniciar sesión</a>
+      <a href= "../Sites/login/registro.php">Registrarse</a>
     </nav>
   </div>
 
@@ -23,12 +23,14 @@
     </div>
   </header>
 
-  <section class='contenido_descripcion'>
-    
-
-    <h2 class='sub-titulo'>Descripción</h2>
-    
+  <section class= 'logo_brande'>
+      <h2 class='sub-titulo'>Descripción</h2>
+      <img id='logo_grande' src="../Sites/imagenes/logo2.png">
+  </section>     
+    <br>
+  <section class='contenido_equipo'>
     <p>En esta aplicación podrás ver las distintas películas y series que ofrecen cada uno de nuestros proveedores, al igual que todos los videojuegos ofrecidos por las distintas plataformas asociadas</p>
+    <br>
     <p>Ven y aprovecha los distintos contenidos multimedia que ofrece nuestra app mediante sistemas de subscripción o pago único según el caso</p>
     <br>
     <p>Para acceder a todas las funcionalidades por favor regístrese o inicie sesión</p>
@@ -43,11 +45,11 @@
   </section>
 
   <section class='contenido_contacto'>
-    <form action="/login/login.php">
+    <form action="../Sites/login/login.php">
       <input type="submit" value="Login" />
     </form>
     <br>
-    <form action="/login/registro.php">
+    <form action="../Sites/login/registro.php">
       <input type="submit" value="Registrarse" />
     </form>
     <br>

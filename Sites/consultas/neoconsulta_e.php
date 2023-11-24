@@ -32,38 +32,26 @@
 
   <header class='contenedor_header'>
     <div class='titulo'>
-      <h1>Defrosting Multimedia</h1>
+      <h1>[Work in Progress]</h1>
     </div>
   </header>
 
   <div class='contenido_menu'>
 
-    <h2 class='sub-titulo'> Menu</h2>
+    <h2 class='sub-titulo'>[WIP]</h2>
 
     <br>
-    <form action="../consultas/neoperfil.php">
-      <input type="submit" value="Perfil" />
-    </form>
-    
-    <form action="../consultas/neosubs.php">
-      <input type="submit" value="Subscripciones" />
-    </form>
-
-    <form action="../consultas/neocompras.php">
-      <input type="submit" value="Compras" />
-    </form>
-
-    <form action="../consultas/neoconsulta_e.php">
-      <input type="submit" value="Consulta estructurada" />
-    </form>
-
-    <form action="../consultas/neoextra.php">
-      <input type="submit" value="Funcionalidad extra" />
-    </form>
 
 
+    <form action="#">
+      <input type="submit" value="[WIP]" />
+    </form>
+
+    <form action="../index.php">
+      <input type="submit" value="Inicio" />
+    </form>
   </div>
-
+  
   <section class='contenido_contacto'>
   </section>
   

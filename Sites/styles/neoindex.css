@@ -109,6 +109,17 @@ input, button{
   opacity: 0.87;
 }
 
+.logo_grande{
+  height: 200px;
+  width: auto;
+  justify-content: space-evenly;
+  display: flex;
+}
+#logo_grande{
+  max-height: 150px;
+  max-width:  150px;
+}
+
 .contenido_descripcion, .contenido_equipo{
   margin-left: 200px;
   margin-right: 200px;
