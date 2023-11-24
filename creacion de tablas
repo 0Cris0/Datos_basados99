@@ -149,7 +149,7 @@ CREATE TABLE catalogo_j(
 
     PRIMARY KEY (id_juego, id_prov),
     FOREIGN KEY(id_juego) REFERENCES videojuegos(id_juego) ON DELETE CASCADE,
-    FOREIGN KEY(id_prov) REFERENCES proveedores_juego(id_prov) ON DELETE CASCADE,
+    FOREIGN KEY(id_prov) REFERENCES proveedores_juego(id_prov) ON DELETE CASCADE
 );
 
 --- OJO CON LOS PRECIOS NEGATIVOS ^
