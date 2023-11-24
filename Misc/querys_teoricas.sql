@@ -268,10 +268,10 @@ SELECT EXISTS(
 $id_juego
 
     SELECT * -- Aquí no saco nada con pedir info específica ya que necesito todo
-    FROM proveedores_juego as pj, juegos_proveedor_juego as jpj, videojuegos_pun as vp
-    WHERE pj.id_prov == jpj.id_prov
-    AND jpj.id_juego == $id_juego
-    AND jpj.id_juego == vp.id_juego
+    FROM proveedores_juego as pj, catalogo_j as cj, videojuegos_pun as vp
+    WHERE pj.id_prov == cj.id_prov
+    AND cj.id_juego == $id_juego
+    AND cj.id_juego == vp.id_juego
 
 
 -- detalle de un pelicula seleccionada
@@ -279,13 +279,17 @@ $id_juego
 $id_peli
 
     SELECT * -- Aquí no saco nada con pedir info específica ya que necesito todo
-    FROM proveedores_peli as pp, arriendos_proveedor_peli as app, peliculas as p
-    WHERE p.id_peli == app.id_peli
-    AND pp.id_prov == app.id_prov
-    AND app.id_peli == $id_peli
+    FROM proveedores_ps as pp, catalogo_p_arriengo as cpa, peliculas as p
+    WHERE p.id_peli == cpa.id_peli
+    AND pp.id_prov == cpa.id_prov
+    AND cpa.id_peli == $id_peli
 
 
         -- Con ambos debería trabajar el cómo se muestra
+
+
+-- LISTO HACIA ARRIBA (hace sentido) ------------------------------------------------------------------------------------------------------------
+
 
 -- =================================
 -- compra videojuego

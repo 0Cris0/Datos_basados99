@@ -7,7 +7,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>[Falta contexto]</title>
+    <title>Registro</title>
     <!-- Bootstrap(CSS), Jquery (javascripts), etc... -->
 
     <!-- para que sea index.php pueda importarlo -->
@@ -34,39 +34,42 @@
     </div>
   </header>
 
-    <h2 class='sub-titulo'>Revisión de login</h2>
 
     <?php
-        #Llama a conexión, crea el objeto PDO y obtiene la variable $db
-        
-        /*
+        #Llama a conexión, crea el objeto PDO y obtiene la variable $db        
         require("../config/conexion.php");
 
-        $username = $_POST["username"];
-        $password = $_POST["password"];
         $nombre = $_POST["nombre"];
-        $email = $_POST["email"];
+        $mail = $_POST["email"];
+        $password = $_POST["password"]; # <-------CRYPT
+        $username = $_POST["username"];
         $fecha_nacimiento = $_POST["fecha_nacimiento"];
 
-        $query = "";
-        # Probablemente sea una de UPDATE
 
-        # $_SESSION["username"] = $username_ingresado
+        # Primero veo que el username no esté ya en la BD
+        $query_existencia = "repeticion_usuario($nombre, $mail, $contrasena, $username, $fecha_nacimiento)";
+        $resultado1 = $db -> prepare($query_existencia);
+        $resultado1 -> execute();
+        $existe = $resultado1 -> fetchAll();
 
-        #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados
-        $result = $db -> prepare($query);
-        $result -> execute();
-        $juegos = $result -> fetchAll();
-
-        # Debe redirigir al perfil
-
+        # En caso de que no esté procedo a registrar
+        $query_registro = "agregar_usuario($nombre, $mail, $contrasena, $username, $fecha_nacimiento)";
+      
+        # [OJO]: Ver comprobaciones de validez
         # No sé si deberíamos hacer las comprobaciones aquí de la validez
         # de la cosa o antes (de momento se está dando el espacio para que ocurra antes)
-        */
-        $estado = true
+        
+        # $existe = true
         # $estado = false
     ?>
-    <?php if($estado){ ?>
+    <?php if(!$existe){ 
+      $resultado2 = $db -> prepare($query_registro);
+      $resultado2 -> execute();
+      $juegos = $resultado2 -> fetchAll();
+
+      $_SESSION["username"] = $username_ingresado;
+      
+      ?>
         <h2 class='sub-titulo'>Bienvenido</h2>
 
         <br>
@@ -79,9 +82,11 @@
 
 
     <?php }else{?>
-
+        <h2 class='sub-titulo'>Registrarse</h2>
         <div class='error'>
             <p class='error'>Algo salió mal, por favor inténtelo nuevamente</p>
+            <br>
+            <p class='error'>Ya existe un usuario con ese nombre (o username)</p>
         </div>
 
         <div class='contenido_registro'>
@@ -103,10 +108,20 @@
                 se coloque algo como $_SESSION["username"] = $username_ingresado-->
             </div>
             <?php } else {
-                echo "Ya tienes estás registrado";
-            }
-            ?>
+                echo "Ya tienes estás registrado, no deberías estar aquí";
+                ?>
+                <form action="/Sites/menu/menu.php">
+                  <input type="submit" value="Menu" />
+                </form>
+                
+            <?}?>
             <!--i no está asignada la variable mostrar form para ingresar-->
         </div>
     <?php }?>
-    </body>
+    <section class='contenido_contacto'>
+  </section>
+  
+  <div class='parte_inferior'>
+    <p>Fuente: de soda</p>
+  </div>
+</body>

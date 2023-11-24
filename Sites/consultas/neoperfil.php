@@ -40,13 +40,15 @@
     <?php
         #Llama a conexión, crea el objeto PDO y obtiene la variable $db
         
-        /*
+        
         require("../config/conexion.php");
 
         $username = $_POST["username"];
-        $password = $_POST["password"];
 
-        $query = "";
+        $query = "info_perfil";
+        # [OJO: Ver cómo eso funcionar]
+
+
         # Obtener qué usuario es
         # Obtener su información (nombre, email, username)
         # Mosttar edad
@@ -63,13 +65,8 @@
         #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados
         $result = $db -> prepare($query);
         $result -> execute();
-        $juegos = $result -> fetchAll();
-        
-        # Debe redirigir al perfil
-        # en caso de ser correcto
+        $datos = $result -> fetchAll();
 
-        # O mandar al inicio de sesión si falló
-        */
     ?>
     <section class='contenedor_general'>
             <table class='tabla'>
@@ -81,6 +78,7 @@
                     <th>Horas jugando</th>
                     <th>Horas viendo streaming</th>
                 </tr>
+                
                 <tr>
                     <td>**nombre</td>
                     <td>**email</td>

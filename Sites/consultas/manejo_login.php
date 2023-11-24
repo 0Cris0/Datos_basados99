@@ -7,7 +7,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>[Falta contexto]</title>
+    <title>Login</title>
     <!-- Bootstrap(CSS), Jquery (javascripts), etc... -->
 
     <!-- para que sea index.php pueda importarlo -->
@@ -32,30 +32,25 @@
       <h1>Login</h1>
     </div>
   </header>
-    <h2 class='sub-titulo'>Revisión de login</h2>
 
     <?php
-        #Llama a conexión, crea el objeto PDO y obtiene la variable $db
         
-        
-        
-        /*
         require("../config/conexion.php");
 
         $username = $_POST["username"];
         $password = $_POST["password"];
 
-        $query = "";
+        $query = "credenciales_usuario($n_usuario, $contrasena)";
         # Se tiene que verificar que sea correcto el inicio de sesión
 
         # De ser correcto $_SESSION["username"] = $username_ingresado
 
         #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados
-        $result = $db -> prepare($query);
-        $result -> execute();
-        $juegos = $result -> fetchAll();
-        */
-        $estado = true
+        $resultado = $db -> prepare($query);
+        $resultado -> execute();
+        $correcto = $resultado -> fetchAll();
+        
+        #$estado = true
         # $estado = false
 
         # Debe redirigir al perfil
@@ -63,7 +58,9 @@
 
         # O mandar al inicio de sesión si falló
     ?>
-    <?php if($estado){ ?>
+    <?php if($correcto){
+      $_SESSION["username"] = $username_ingresado
+       ?>
         <h2 class='sub-titulo'>Bienvenido</h2>
 
         <br>
@@ -78,7 +75,7 @@
     <?php }else{?>    
 
         <div class='error'>
-            <p class='error'>Algo salió mal, por favor inténtelo nuevamente</p>
+            <p class='error'>Algo salió mal, por favor inténtelo nuevamente:</p>
         </div>
 
         <div class='contenido_login'>
@@ -97,7 +94,6 @@
         </div>
 
     <?php }?>
-    
   
 
   <section class='contenido_contacto'>
