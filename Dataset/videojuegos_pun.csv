@@ -1,4 +1,4 @@
-id_videojuego,titulo,puntuacion,clasificacion,fecha_lanzamiento,beneficio
+id_juego,titulo,puntuacion,clasificacion,fecha_lanzamiento,beneficio
 15,Fallout 3,86.43,Eighteen,2008-10-27,ninguno
 16,Fallout: New Vegas,84.59,M,2010-10-18,ninguno
 21,BioShock 2,83.96,Eighteen,2010-08-02,contenido adicional exclusivo

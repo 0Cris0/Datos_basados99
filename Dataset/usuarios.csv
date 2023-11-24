@@ -1,4 +1,4 @@
-uid,nombre,mail,contrasena,username,fecha_nacimiento
+id_usuario,nombre,mail,contrasena,username,fecha_nacimiento
 1,Elizabeth Miller,emiller@gmail.com,oCcUFjmL,emiller1965,1967-08-16
 2,Michelle Williams,mwilliams@gmail.com,W9Sxt1sQ,mwilliams1985,2000-08-04
 3,Sharon Garcia,sgarcia@yahoo.com,6Jb2Rmc6,sgarcia1969,1942-11-23
