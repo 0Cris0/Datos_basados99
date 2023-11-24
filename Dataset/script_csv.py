@@ -287,6 +287,7 @@ juegos_proveedor_juego.rename(columns = {'id_proveedor':'id_prov'}, inplace = Tr
 juegos_proveedor_juego.reset_index(drop=True, inplace=True)
 juegos_proveedor_juego.set_index('id_prov', inplace=True)
 juegos_proveedor_juego.rename(columns = {'id_videojuego':'id_juego'}, inplace = True)
+juegos_proveedor_juego.
 
 
 subscripcion_vj = suscripciones_p[['subs_id', 'estado', 'fecha_inicio', 'id_usuario', 'fecha_termino', 'id_videojuego']]

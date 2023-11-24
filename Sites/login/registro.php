@@ -40,6 +40,18 @@
   <div class='contenido_registro'>
 
     <h2 class='sub-titulo'>Registrarse</h2>
+    <div class='error'>
+            <p class='error'>Algo salió mal, por alguna razón no está procesando la siguiente página</p>
+            <br>
+            <p class='error'>[WIP], de momento se implementará un botón que te lleve al menú...</p>
+            <br>
+            <p class='error'>Considerar posibles errores relacioando a la falta de un username</p>
+        </div>
+
+        <form action="../menu/menu.php">
+          <input type="submit" value="Menu" />
+        </form>
+    <br>
 
     
     <?php 

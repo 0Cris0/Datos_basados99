@@ -301,7 +301,7 @@ CREATE TABLE visualizacion_c(
 -----------------------
 CREATE TABLE generos(
     genero VARCHAR(255) NOT NULL,
-    PRIMARY KEY (genero)
+    
 );
 
 

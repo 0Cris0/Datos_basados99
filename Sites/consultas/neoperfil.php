@@ -135,7 +135,7 @@
     </section>
 
     <br>
-    <form action="/menu/menu.php">
+    <form action="../menu/menu.php">
       <input type="submit" value="Menu" />
     </form>
 
