@@ -8,7 +8,7 @@
 
     <!-- para que sea index.php pueda importarlo -->
     <!-- para que sea index.php pueda importarlo -->
-    <link rel="stylesheet" href="/home/grupo50/Sites/styles/index.css">
+    <link rel="stylesheet" href="../home/grupo50/Sites/styles/index.css">
 
     <!-- para que una consulta.php pueda importarlo -->
 
@@ -89,7 +89,7 @@
           
       </table>
 
-  <a href="/home/grupo50/Sites/index.php">
+  <a href="../home/grupo50/Sites/index.php">
         <button> Volver al índice </button>
     </a>
 </body>

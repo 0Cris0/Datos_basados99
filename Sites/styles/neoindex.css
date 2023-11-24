@@ -80,7 +80,7 @@ input, button{
   justify-content: center;
   align-items: center;
   height: 60vh;
-  background: url("/Sites/imagenes/patron.jpg");
+  background: url("../imagenes/patron.jpg");
 }
 
 
