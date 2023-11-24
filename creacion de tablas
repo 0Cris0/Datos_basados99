@@ -131,6 +131,19 @@ CREATE TABLE proveedores_juego(
 );
 
 
+CREATE TABLE usuarios_proveedor_j (
+
+id_usuario INT NOT NULL,
+id_prov SERIAL NOT NULL,
+
+PRIMARY KEY (id_usuario, id_prov),
+
+FOREIGN KEY(id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
+
+FOREIGN KEY(id_prov) REFERENCES proveedores_juego(id_prov) ON DELETE CASCADE,
+) 
+
+
 CREATE TABLE catalogo_j(
     id_juego INT NOT NULL,
     id_prov INT NOT NULL,

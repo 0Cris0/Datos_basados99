@@ -1,4 +1,4 @@
-subs_id,estado,fecha_inicio,id_usuario,fecha_termino,id_juego
+id_sub,estado,fecha_inicio,id_usuario,fecha_termino,id_juego
 1,canceled,2021-06-14,102,2023-07-25,1068
 2,active,2021-03-21,102,2023-12-21,74
 3,active,2021-01-31,102,2023-12-31,2031

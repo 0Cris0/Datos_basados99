@@ -1,4 +1,4 @@
-pid,titulo,duracion,clasificacion,puntuacion,anho
+id_pelicula,titulo,duracion,clasificacion,puntuacion,anho
 1.0,Return to Babylon,75,G,7.1,2013
 2.0,Life's a Beach,100,PG-13,9.0,2012
 3.0,'77,113,G,2.1,2017

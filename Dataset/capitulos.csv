@@ -1,4 +1,4 @@
-cid,id_serie,titulo,duracion,numero
+id_capitulo,id_serie,titulo,duracion,numero
 1.0,1.0,Episode 1,62,1.0
 2.0,1.0,Episode 2,66,1.0
 3.0,1.0,Episode 3,59,1.0

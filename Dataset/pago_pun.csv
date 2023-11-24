@@ -1,4 +1,4 @@
-pago_id,preorden,id_prov,id_juego
+id_pago,preorden,id_prov,id_juego
 3482,False,1.0,16.0
 3483,False,1.0,732.0
 3484,False,1.0,12517.0

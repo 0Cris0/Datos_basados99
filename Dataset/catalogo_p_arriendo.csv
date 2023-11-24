@@ -1,4 +1,4 @@
-pro_id,id_pelicula,precio,disponibilidad
+id_prov,id_pelicula,precio,disponibilidad
 19,1.0,6500.0,2.0
 10,1.0,3500.0,1.0
 2,2.0,4000.0,1.0

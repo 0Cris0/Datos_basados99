@@ -1,4 +1,4 @@
-sid,serie,clasificacion,puntuacion,anho
+id_serie,serie,clasificacion,puntuacion,anho
 1.0,Sex Education,R,8.0,2019
 2.0,Friends,PG,9.5,1994
 3.0,Jojo's Bizarre Adventure,PG,10.0,2012
