@@ -38,9 +38,9 @@
         require("../config/conexion.php");
 
         $username = $_POST["username"];
-        $password = $_POST["password"];
+        $contrasena = $_POST["password"];
 
-        $query = "credenciales_usuario($n_usuario, $contrasena)";
+        $query = "credenciales_usuario($username, $contrasena)";
         # Se tiene que verificar que sea correcto el inicio de sesión
 
         # De ser correcto $_SESSION["username"] = $username_ingresado
@@ -59,9 +59,9 @@
         # O mandar al inicio de sesión si falló
     ?>
     <?php if($correcto){
-      $_SESSION["username"] = $username_ingresado
+      $_SESSION["username"] = $username
        ?>
-        <h2 class='sub-titulo'>Bienvenido</h2>
+        <h2 class='sub-titulo'>Bienvenido:  <?php echo $_SESSION["username"]?></h2>
 
         <br>
         <p>Has logrado logguearte exitosamente, clickea el siguiente botón para continuar:</p>

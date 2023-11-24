@@ -8,8 +8,8 @@
 
     <nav class='barra_nav'>
       <!--a href= "menu/menu.php">Menu</a-->
-      <a href= "login/login.php">Iniciar sesión</a>
-      <a href= "login/registro.php">Registrarse</a>
+      <a href= "/login/login.php">Iniciar sesión</a>
+      <a href= "/login/registro.php">Registrarse</a>
     </nav>
   </div>
 
@@ -43,11 +43,11 @@
   </section>
 
   <section class='contenido_contacto'>
-    <form action="login/login.php">
+    <form action="/login/login.php">
       <input type="submit" value="Login" />
     </form>
     <br>
-    <form action="login/registro.php">
+    <form action="/login/registro.php">
       <input type="submit" value="Registrarse" />
     </form>
     <br>

@@ -1,36 +1,36 @@
 -- =================================
 -- checkear la existencia de usuarios
     
-$n_usuario -- nombre del usuario a consultar
+$username -- nombre del usuario a consultar
 
-CREATE OR REPLACE FUNCTION repeticion_usuario (n_usuario varchar) RETURNS boolean AS $$ 
+CREATE OR REPLACE FUNCTION repeticion_usuario (username varchar) RETURNS boolean AS $$ 
 BEGIN 
     RETURN EXISTS ( 
         SELECT 1 
         FROM usuarios 
-        WHERE n_usuario == usuarios.nombre 
+        WHERE username == usuarios.username 
     ) 
 END 
 $$ language plpgsql 
 
-repeticion_usuario($n_usuario)
+repeticion_usuario($username)
 -- =================================
 -- checkeo de que usuario tenga las credenciales correctas
-$n_usuario -- nombre del usuario a consultar 
+$username -- nombre del usuario a consultar 
 
 $contrasena -- contrasena ingresada 
-CREATE OR REPLACE FUNCTION credenciales_usuario (n_usuario varchar, contrasena varchar) RETURNS boolean AS $$ 
+CREATE OR REPLACE FUNCTION credenciales_usuario (username varchar, contrasena varchar) RETURNS boolean AS $$ 
 BEGIN
     RETURN EXISTS (
         SELECT 1
         FROM usuarios 
-        WHERE n_usuario == usuarios.nombre 
+        WHERE username == usuarios.username 
         AND contrasena = usuarios.contrasena
     )
 END 
 $$ language plpgsql 
 
-credenciales_usuario($n_usuario, $contrasena)
+credenciales_usuario($username, $contrasena)
 -- =================================
 -- agregación de un nuevo usuario
 
@@ -53,55 +53,78 @@ agregar_usuario($nombre, $mail, $contrasena, $username, $fecha_nacimiento)
 
 -- [OJO: Ver que se cumplan las condiciones de JOIN, sino definirlas
 --  de manera explícita]
-$n_usuario -- nombre del usuario a consultar 
+$username -- nombre del usuario a consultar 
 
 CREATE MATERIALIZED VIEW info_perfil AS
-    -- Parte 1: Info del usuario
-    SELECT u.id, u.nombre, u.mail, u.username
-    FROM usuarios as u
-    WHERE $n_usuario == u.nombre 
+    SELECT *
+    FROM (    
+        -- Parte 1: Info del usuario
+        SELECT u.id, u.nombre, u.mail, u.username
+        FROM usuarios as u
+        WHERE $username == u.username
+    ) as Info,(
 
+        --Parte 4: Tiempo visto en streaming
+        SELECT SUM(streaming.duracion) as duracion_ps
+        FROM (
+            -- Parte 4.1: Tiempo visto en peliculas
+            SELECT SUM(p.duracion) as duracion
+            FROM visualizaciones_p as vp, peliculas as p, usuarios as u
+            WHERE $username == u.username
+            AND p.id_pelicula == vp.id_pelicula
+            AND u.id_usuario == vp.id_usuario
+            
+            UNION
+            -- Parte 4.2: Tiempo visto en series
+            SELECT SUM(c.duracion) as duracion
+            FROM visualizaciones_c as vc, capitulo as c, usuarios as u  
+            WHERE $username == u.username
+            AND c.id_capitulo == vc.id_capitulo
+            AND u.id_usuario == vc.id_usuario
+        ) AS streaming
+    ) as t_sp, (
+
+        -- Parte 5: Tiempo visto en juegos
+        SELECT SUM(vu.duracion) as duracion_j
+        FROM videojuegos_usuario as vu, usuarios as u
+        WHERE $username == u.username
+        AND u.id_usuario == vu.id_usuario
+    ) as t_j, (
+
+        -- Parte 6: Edad
+        SELECT DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), u.fecha_nacimiento)), '%Y') as edad
+        FROM usuarios as u 
+        WHERE $username == u.username
+    ) as edad
+
+
+CREATE MATERIALIZED VIEW subs_j_perfil AS
     -- Parte 2: Listado de las subscripciones a juegos
-    SELECT sj.id, vs.titulo
-    FROM subscripciones_juego as sj, videojuegos_sub as vs
-    WHERE $id_usuario == sj.id_usuario 
+    SELECT sj.id, vs.titulo, sj.fecha_inicio
+    FROM subscripciones_juego as sj, videojuegos_sub as vs, usuarios as u
+    WHERE $username == u.username
+    AND u.id_usuario == sj.id_usuario 
     AND vs.id_juego == sj.id_juego
+    ORDER BY sj.fecha_inicio
 
+CREATE MATERIALIZED VIEW subs_ps_perfil AS
     -- Parte 3: Listado de subscripciones streaming
-    SELECT sp.id_sub, pp.nombre
-    FROM subscripciones_ps as sp, proveedores_ps as pp
-    WHERE $id_usuario == sp.id_usuario 
+    SELECT sp.id_sub, pp.nombre, sp.fecha_inicio
+    FROM subscripciones_ps as sp, proveedores_ps as pp, usuarios as u
+    WHERE $username == u.username
+    AND u.id_usuario == sp.id_usuario
     AND sp.id_prov == pp.id_prov
-
-    --Parte 4: Tiempo visto en streaming
-    SELECT SUM(streaming.duracion)
-    FROM (
-        -- Parte 4.1: Tiempo visto en peliculas
-        SELECT SUM(p.duracion) as duracion
-        FROM visualizaciones_p as vp, peliculas as p 
-        WHERE $id_usuario == vp.id_usuario 
-        AND p.id_pelicula == vp.id_pelicula
-        
-        UNION
-        -- Parte 4.2: Tiempo visto en series
-        SELECT SUM(c.duracion) as duracion
-        FROM visualizaciones_c as vc, capitulo as c  
-        WHERE $id_usuario == vc.id_usuario
-        AND c.id_capitulo == vc.id_capitulo
-    ) AS streaming
-
-    -- Parte 5: Tiempo visto en juegos
-    SELECT SUM(vu.duracion) as duracion
-    FROM videojuegos_usuario as vu
-    WHERE $id_usuario == vu.id_usuario 
-
-    -- Parte 6: Edad
-    SELECT DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), u.fecha_nacimiento)), '%Y')
-    FROM usuarios as u 
-    WHERE $id_usuario == u.id 
+    ORDER BY sp.fecha_inicio
 
 
+info_perfil
 
+subs_j_perfil
+    
+subs_ps_perfil
+
+
+-- ARREGLADO HACIA ARRIBA (hace sentido) ------------------------------------------------------------------------------------------------------------
 
 
 

@@ -41,13 +41,13 @@
 
         $nombre = $_POST["nombre"];
         $mail = $_POST["email"];
-        $password = $_POST["password"]; # <-------CRYPT
+        $contrasena = $_POST["password"]; # <-------CRYPT
         $username = $_POST["username"];
         $fecha_nacimiento = $_POST["fecha_nacimiento"];
 
 
         # Primero veo que el username no esté ya en la BD
-        $query_existencia = "repeticion_usuario($nombre, $mail, $contrasena, $username, $fecha_nacimiento)";
+        $query_existencia = "repeticion_usuario($username)";
         $resultado1 = $db -> prepare($query_existencia);
         $resultado1 -> execute();
         $existe = $resultado1 -> fetchAll();
@@ -67,11 +67,11 @@
       $resultado2 -> execute();
       $juegos = $resultado2 -> fetchAll();
 
-      $_SESSION["username"] = $username_ingresado;
+      $_SESSION["username"] = $username;
       
       ?>
-        <h2 class='sub-titulo'>Bienvenido</h2>
-
+        <h2 class='sub-titulo'>Bienvenido:  <?php echo $_SESSION["username"]?></h2>
+        
         <br>
         <p>Has logrado registrarte exitosamente, clickea el siguiente botón para continuar:</p>
         <br>

@@ -45,27 +45,30 @@
 
         $username = $_POST["username"];
 
-        $query = "info_perfil";
+        $query_perfil = "info_perfil";
+        $query_subs_j = "subs_j_perfil";
+        $query_subs_ps = "subs_ps_perfil";
+
+
+        $result = $db -> prepare($query_perfil);
+        $result -> execute();
+        $datos_perfil = $result -> fetchAll();
+        # id, nombre, mail, username, duracion_ps, duracion_j, edad
+
+        $result = $db -> prepare($query_subs_j);
+        $result -> execute();
+        $datos_subs_j = $result -> fetchAll();
+        # id, titulo (juego), fecha_inicio
+
+        $result = $db -> prepare($query_subs_ps);
+        $result -> execute();
+        $datos_subs_ps = $result -> fetchAll();
+        # id, nombre (proveedor), fecha_inicio
+
         # [OJO: Ver cómo eso funcionar]
 
-
-        # Obtener qué usuario es
-        # Obtener su información (nombre, email, username)
-        # Mosttar edad
-        # Listado de subs activas en juegos o streaming
-            # Ordenado por fecha
-        # Suma de horas viendo contenido y aparte jugando
-
-
         # Hacer que esto sea vista materializada con actualización diaria
-        
 
-        # De ser correcto $_SESSION["username"] = $username_ingresado
-
-        #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados
-        $result = $db -> prepare($query);
-        $result -> execute();
-        $datos = $result -> fetchAll();
 
     ?>
     <section class='contenedor_general'>
@@ -78,40 +81,59 @@
                     <th>Horas jugando</th>
                     <th>Horas viendo streaming</th>
                 </tr>
-                
-                <tr>
-                    <td>**nombre</td>
-                    <td>**email</td>
-                    <td>**edad</td>
-                    <td>**username</td>
-                    <td>**tiempo juegos</td>
-                    <td>**tiempo streaming</td>
-                </tr>
+
+                <?php
+                  // echo $pokemones;
+                  # id, nombre, mail, username, duracion_ps, duracion_j, edad
+                  foreach ($datos_perfil as $j) {
+                    echo "<tr> <td>$j[1]</td> <td>$j[2]</td> <td>$j[3]</td> <td>$j[6]</td> <td>$j[5]</td> <td>$j[4]</td></tr>";
+                }
+                ?>
             </table>
     </section>
 
     <br>
-    <h2 class='sub-titulo'>Subscripciones activas</h2>
+    <h2 class='sub-titulo'>Subscripciones streaming activas</h2>
     <br>
     <section class='contenedor_general'>
     <table class='tabla'>
             <tr>
-                <th>Tipo</th>
-                <th>Contenido</th>
-                <th>Estado</th>
+                <th>Proveedor</th>
                 <th>Fecha de inicio</th>
 
             </tr>
-            <tr>
-                <td>**juego/peli</td>
-                <td>**juego/proveedor</td>
-                <td>**estado</td>
-                <td>**fecha de inicio</td>
-
-            </tr>
+            <?php
+                  // echo $pokemones;
+                  # id, nombre (proveedor), fecha_inicio
+                  foreach ($datos_subs_ps as $j) {
+                    echo "<tr> <td>$j[1]</td> <td>$j[2]</td> </tr>";
+                }
+            ?>
         </table>
         
     </section>
+
+    <br>
+    <h2 class='sub-titulo'>Subscripciones videojuegos activas</h2>
+    <br>
+    <section class='contenedor_general'>
+    <table class='tabla'>
+            <tr>
+                <th>Videojuego</th>
+                <th>Fecha de inicio</th>
+
+            </tr>
+            <?php
+                  // echo $pokemones;
+                  # id, titulo (juego), fecha_inicio
+                  foreach ($datos_subs_j as $j) {
+                    echo "<tr> <td>$j[1]</td> <td>$j[2]</td> </tr>";
+                }
+            ?>
+        </table>
+        
+    </section>
+
     <br>
     <form action="/Sites/menu/menu.php">
       <input type="submit" value="Menu" />
