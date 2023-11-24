@@ -1,48 +1,48 @@
-,genero,subgenero
-0,Acción,nan
-1,Animación,nan
-2,Aventura,nan
-3,Biografía,nan
-4,Punk,Biopunk
-5,Ciencia ficción,Ciencia ficción apocalíptica
-6,Ciencia ficción,Biopunk
-7,Ciencia ficción,Romance Planetario
-8,Ciencia ficción,nan
-9,Comedia,nan
-10,Crimen,nan
-11,Cyberpunk,nan
-12,Deporte,nan
-13,Drama,nan
-14,Familiar,nan
-15,Fantasía,Fantasía oscura
-16,Guerra,nan
-17,Histórico,nan
-18,Horror,nan
-19,Música,nan
-20,Misterio,nan
-21,Romance,nan
-22,Slasher,nan
-23,Thriller,Thriller sicológico
-25,Turn-based strategy (TBS),nan
-28,Sigilo,nan
-29,Estrategia,nan
-30,Platforma,nan
-31,Horror,Thriller
-32,Historicos,nan
-33,Puzzle,nan
-35,Accion,nan
-36,Simulador,nan
-38,Open world,nan
-39,Indie,nan
-40,Thriller,nan
-41,Negocio,nan
-43,Tactical,nan
-44,Hack and slash/Beat 'em up,nan
-45,Fantasia,nan
-46,Misterio,Thriller
-47,Estrategia,Real Time Strategy (RTS)
-48,RPG,nan
-49,FPS,nan
-50,Sandbox,nan
-51,Supervivencia,nan
-55,Ciencia Ficcion,nan
+genero,subgenero
+Acci√≥n,nan
+Animaci√≥n,nan
+Aventura,nan
+Biograf√≠a,nan
+Punk,Biopunk
+Ciencia ficci√≥n,Ciencia ficción apocalíptica
+Ciencia ficci√≥n,Biopunk
+Ciencia ficci√≥n,Romance Planetario
+Ciencia ficci√≥n,nan
+Comedia,nan
+Crimen,nan
+Cyberpunk,nan
+Deporte,nan
+Drama,nan
+Familiar,nan
+Fantas√≠a,Fantasía oscura
+Guerra,nan
+Hist√≥rico,nan
+Horror,nan
+M√∫sica,nan
+Misterio,nan
+Romance,nan
+Slasher,nan
+Thriller,Thriller sicológico
+Turn-based strategy (TBS),nan
+Sigilo,nan
+Estrategia,nan
+Platforma,nan
+Horror,Thriller
+Historicos,nan
+Puzzle,nan
+Accion,nan
+Simulador,nan
+Open world,nan
+Indie,nan
+Thriller,nan
+Negocio,nan
+Tactical,nan
+Hack and slash/Beat 'em up,nan
+Fantasia,nan
+Misterio,Thriller
+Estrategia,Real Time Strategy (RTS)
+RPG,nan
+FPS,nan
+Sandbox,nan
+Supervivencia,nan
+Ciencia Ficcion,nan
