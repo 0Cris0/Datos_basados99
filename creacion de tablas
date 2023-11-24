@@ -159,7 +159,7 @@ CREATE TABLE catalogo_p_incluida(
     id_pelicula INT NOT NULL,
     id_prov INT NOT NULL,
 
-    CONSTRAINT catalogo_p_pk PRIMARY KEY (id_pelicula, id_prov),
+    CONSTRAINT catalogo_p_incluida_pk PRIMARY KEY (id_pelicula, id_prov),
     CONSTRAINT id_pelicula_fk FOREIGN KEY (id_pelicula) REFERENCES peliculas(id_pelicula) ON DELETE CASCADE,
     CONSTRAINT id_prov_fk FOREIGN KEY (id_prov) REFERENCES proveedores_ps(id_prov) ON DELETE CASCADE
 );
@@ -169,7 +169,8 @@ CREATE TABLE catalogo_p_arriendo(
     id_prov INT NOT NULL,
     precio INT,
     disponibilidad INT,
-    
+
+    CONSTRAINT catalogo_p_arriendo_pk PRIMARY KEY (id_pelicula, id_prov),    
     FOREIGN KEY (id_pelicula) REFERENCES peliculas(id_pelicula) ON DELETE CASCADE,
     FOREIGN KEY (id_prov) REFERENCES proveedores_ps(id_prov) ON DELETE CASCADE
 );
