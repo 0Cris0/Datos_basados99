@@ -137,7 +137,7 @@ CREATE TABLE usuarios_proveedor_j (
     
     PRIMARY KEY (id_usuario, id_prov),
     FOREIGN KEY(id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
-    FOREIGN KEY(id_prov) REFERENCES proveedores_juego(id_prov) ON DELETE CASCADE,
+    FOREIGN KEY(id_prov) REFERENCES proveedores_juego(id_prov) ON DELETE CASCADE
 );
 
 
@@ -150,7 +150,7 @@ CREATE TABLE catalogo_j(
     PRIMARY KEY (id_juego, id_prov),
     FOREIGN KEY(id_juego) REFERENCES videojuegos(id_juego) ON DELETE CASCADE,
     FOREIGN KEY(id_prov) REFERENCES proveedores_juego(id_prov) ON DELETE CASCADE,
-    CHECK (puntuacion BETWEEN 0 AND 100),
+    CHECK (puntuacion BETWEEN 0 AND 100)
 );
 
 --- OJO CON LOS PRECIOS NEGATIVOS ^
