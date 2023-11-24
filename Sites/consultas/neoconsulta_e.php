@@ -22,7 +22,7 @@
 <body>
   <div class="parte_superior">
     <div class='logo'>
-      <a href="../Sites/index.php"><img src="../imagenes/logo2.png"></a>
+      <a href="../index.php"><img src="../imagenes/logo2.png"></a>
     </div>
 
     <nav class='barra_nav'>

@@ -92,7 +92,7 @@ CREATE TABLE videojuegos_usuario(
     horas_juego FLOAT,
     fecha_visualizacion DATE,
 
-    CONSTRAINT videojuegos_usuario_pk PRIMARY KEY (id_usuario, id_juego),
+    CONSTRAINT videojuegos_usuario_pk PRIMARY KEY (id_usuario, id_juego, fecha_visualizacion),
     CONSTRAINT id_usuario_fk FOREIGN KEY(id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
     CONSTRAINT id_juego_fk FOREIGN KEY(id_juego) REFERENCES videojuegos(id_juego),
     CONSTRAINT horas_juego_geq0 CHECK (horas_juego >= 0)

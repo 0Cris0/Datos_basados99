@@ -12,7 +12,7 @@
 
     <!-- para que sea index.php pueda importarlo -->
     <!-- para que sea index.php pueda importarlo -->
-    <link rel="stylesheet" href="../Sites/styles/neoindex.css"> 
+    <link rel="stylesheet" href="../styles/neoindex.css"> 
 
     <!-- para que una consulta.php pueda importarlo -->
 
@@ -21,11 +21,11 @@
 <body>
   <div class="parte_superior">
     <div class='logo'>
-      <a href="../Sites/index.php"><img src="../Sites/imagenes/logo2.png"></a>
+      <a href="../index.php"><img src="../imagenes/logo2.png"></a>
     </div>
 
     <nav class='barra_nav'>
-      <a href= "/Sites/menu/menu.php">Menu</a>
+      <a href= "../menu/menu.php">Menu</a>
     </nav>
   </div>
 
@@ -92,7 +92,7 @@
                 <td>**puntuación</td>
                 <td>**año</td>
                 <td>
-                    <form action="/Sites/consultas/neomostrar_proveedor.php">
+                    <form action="../consultas/neomostrar_proveedor.php">
                     <input type="submit" value="Ver" />
                     </form>
                 </td>
@@ -121,7 +121,7 @@
                 <td>**fecha_lanzamiento</td>
                 <td>**beneficio</td>
                 <td>
-                    <form action="/Sites/consultas/neomostrar_proveedor.php">
+                    <form action="../consultas/neomostrar_proveedor.php">
                     <input type="submit" value="Ver" />
                     </form>
                 </td>
@@ -131,7 +131,7 @@
     </section>
 
     <br>
-    <form action="/Sites/menu/menu.php">
+    <form action="../menu/menu.php">
       <input type="submit" value="Menu" />
     </form>
 

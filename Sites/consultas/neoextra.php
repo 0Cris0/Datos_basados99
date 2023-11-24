@@ -40,7 +40,14 @@
 
     <h2 class='sub-titulo'>[WIP / Easter egg]</h2>
 
-    <img src="../Sites/imagenes/defrost-webp">
+    <audio controls>
+      <source src="../easter_egg/defrost.mp3" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+
+    <br>
+
+    <img src="../imagenes/defrost.jpg">
     <br>
     <form action="#">
       <input type="submit" value="[WIP]" />
