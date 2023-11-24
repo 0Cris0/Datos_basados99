@@ -432,7 +432,7 @@ videojuego_pun.to_csv('videojuegos_pun.csv', sep=',', encoding='utf-8')
 videojuego_sub.to_csv('videojuegos_sub.csv', sep=',', encoding='utf-8')
 proveedor_juego.to_csv('proveedores_juego.csv', sep=',', encoding='utf-8')
 usuarios_proveedor_juego.to_csv('usuarios_proveedor_juego.csv', sep=',', encoding='utf-8')    # FALTA CREATE TABLE
-juegos_proveedor_juego.to_csv('catalogo_j.csv', sep=',', encoding='utf-8')
+juegos_proveedor_juego.to_csv('juegos_proveedor_juego.csv', sep=',', encoding='utf-8')        # FALTA CREATE TABLE
 subscripcion_vj.to_csv('subscripciones_juego.csv', sep=',', encoding='utf-8')
 videojuegos_usuario.to_csv('videojuegos_usuario.csv', sep=',', encoding='utf-8')
 resenas.to_csv('resenas.csv', sep=',', encoding='utf-8')
@@ -440,8 +440,8 @@ genero_juego.to_csv('generos_juego.csv', sep=',', encoding='utf-8')
 pagos.to_csv('pagos.csv', sep=',', encoding='utf-8')
 pago_subs_peli.to_csv('pagos_subs.csv', sep=',', encoding='utf-8')
 pago_a_peli.to_csv('pagos_p.csv', sep=',', encoding='utf-8')
-pago_subs_juego.to_csv('pago_sub_j.csv', sep=',', encoding='utf-8')                    
-pago_pun.to_csv('pago_pun.csv', sep=',', encoding='utf-8')                                    
+pago_subs_juego.to_csv('pago_subs_juego.csv', sep=',', encoding='utf-8')                      # FALTA CREATE TABLE
+pago_pun.to_csv('pago_pun.csv', sep=',', encoding='utf-8')                                    # FALTA CREATE TABLE
 
 usuarios_i2.to_csv('usuarios.csv', sep=',', encoding='utf-8')
 genero_subgenero.to_csv('genero_subgenero.csv', sep=',', encoding='utf-8')
