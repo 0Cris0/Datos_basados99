@@ -105,27 +105,53 @@ visualizacion_p(uid,pid,fecha)
 
 
 
-\copy catalogo_p_arriendo(id_prov,id_pelicula,precio,disponibilidad) FROM 'Entrega3/dataset/catalogo_p_arriendo.csv' DELIMITER ',' CSV HEADER;
-\copy catalogo_p_incluida(id_prov,id_pelicula) FROM 'Entrega3/dataset/catalogo_p_incluida.csv' DELIMITER ',' CSV HEADER;
-\copy catalogo_s(id_prov,id_serie) FROM 'Entrega3/dataset/catalogo_s.csv' DELIMITER ',' CSV HEADER;
+
+
+
+
+
+-- No existe el CSV de género
+\copy generos(genero) FROM 'Entrega3/dataset/generos.csv' DELIMITER ',' CSV HEADER;
 \copy generos_p(id_pelicula,genero) FROM 'Entrega3/dataset/generos_p.csv' DELIMITER ',' CSV HEADER;
 \copy generos_s(id_serie,genero) FROM 'Entrega3/dataset/generos_s.csv' DELIMITER ',' CSV HEADER;
 \copy generos_juego(id_juego,nombre) FROM 'Entrega3/dataset/generos_juego.csv' DELIMITER ',' CSV HEADER;
 \copy genero_subgenero(genero,subgenero) FROM 'Entrega3/dataset/genero_subgenero.csv' DELIMITER ',' CSV HEADER;
-\copy pagos_p(id_pago,id_pelicula,id_prov) FROM 'Entrega3/dataset/pago_p.csv' DELIMITER ',' CSV HEADER;
 
+
+
+-- ___________________________> NEED SUPPORT (se guarda como texto NA)
 -- ERROR:  invalid input syntax for type integer: "<NA>"
 -- CONTEXT:  COPY catalogo_j, line 2, column precio_preorden: "<NA>"
 \copy catalogo_j(id_prov,id_juego,precio,precio_preorden) FROM 'Entrega3/dataset/juegos_proveedor_juego.csv' DELIMITER ',' CSV HEADER;
 
 
--- Int --> Float id_sub
-\copy pagos_pun(id_pago,preorden,id_prov,id_juego) FROM 'Entrega3/dataset/pagos_pun.csv' DELIMITER ',' CSV HEADER;
+-- ERROR:  insert or update on table "pagos_sub_ps" violates foreign key constraint "pagos_sub_ps_id_pago_fkey"
+-- DETAIL:  Key (id_pago)=(6368) is not present in table "pagos".
+\copy pagos_sub_ps(id_pago,id_sub) FROM 'Entrega3/dataset/pago_subs.csv' DELIMITER ',' CSV HEADER;
+-- ERROR:  insert or update on table "pagos_p" violates foreign key constraint "pagos_p_id_pago_fkey"
+--DETAIL:  Key (id_pago)=(10366) is not present in table "pagos".
+\copy pagos_p(id_pago,id_pelicula,id_prov) FROM 'Entrega3/dataset/pago_p.csv' DELIMITER ',' CSV HEADER;
+-- ERROR:  insert or update on table "pagos_sub_j" violates foreign key constraint "pagos_sub_j_id_pago_fkey"
+-- DETAIL:  Key (id_pago)=(1) is not present in table "pagos".
 \copy pagos_sub_j(id_pago,id_sub) FROM 'Entrega3/dataset/pago_subs_juego.csv' DELIMITER ',' CSV HEADER;
 
--- Usuarios
-\copy pagos_sub_ps(id_pago,id_sub) FROM 'Entrega3/dataset/pago_subs.csv' DELIMITER ',' CSV HEADER;
+
+-- Int --> Float id_sub
+-- ERROR:  invalid input syntax for type integer: "1.0"
+-- CONTEXT:  COPY pagos_pun, line 2, column id_prov: "1.0"
+\copy pagos_pun(id_pago,preorden,id_prov,id_juego) FROM 'Entrega3/dataset/pagos_pun.csv' DELIMITER ',' CSV HEADER;
+
+
+
+
+-- MAXIMA PRIORIDAD
+-- ERROR:  insert or update on table "pagos" violates foreign key constraint "pagos_id_usuario_fkey"
+--DETAIL:  Key (id_usuario)=(145) is not present in table "usuarios".
 \copy pagos(id_pago,monto,fecha,id_usuario) FROM 'Entrega3/dataset/pagos.csv' DELIMITER ',' CSV HEADER;
+
+
+-- ERROR:  insert or update on table "usuarios_proveedor_j" violates foreign key constraint "usuarios_proveedor_j_id_usuario_fkey"
+-- DETAIL:  Key (id_usuario)=(78) is not present in table "usuarios".
 \copy usuarios_proveedor_j(id_usuario,id_prov) FROM 'Entrega3/dataset/usuarios_proveedor_juego.csv' DELIMITER ',' CSV HEADER;
 
 
@@ -149,7 +175,9 @@ visualizacion_p(uid,pid,fecha)
 \copy subscripciones_ps_terminadas(id_sub,fecha_termino) FROM 'Entrega3/dataset/subscripcion_ps_terminadas.csv' DELIMITER ',' CSV HEADER;
 \copy visualizacion_c(id_usuario,id_capitulo,fecha) FROM 'Entrega3/dataset/visualizacion_c.csv' DELIMITER ',' CSV HEADER;
 \copy subscripciones_ps(id_sub,id_usuario,id_prov,estado,fecha_inicio) FROM 'Entrega3/dataset/subscripcion_ps.csv' DELIMITER ',' CSV HEADER;
-
+\copy catalogo_s(id_prov,id_serie) FROM 'Entrega3/dataset/catalogo_s.csv' DELIMITER ',' CSV HEADER;
+\copy catalogo_p_incluida(id_prov,id_pelicula) FROM 'Entrega3/dataset/catalogo_p_incluida.csv' DELIMITER ',' CSV HEADER;
+\copy catalogo_p_arriendo(id_prov,id_pelicula,precio,disponibilidad) FROM 'Entrega3/dataset/catalogo_p_arriendo.csv' DELIMITER ',' CSV HEADER;
 
 
 -- ERRORES

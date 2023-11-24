@@ -203,6 +203,10 @@ suscripciones_p.rename(columns = {'id':'subs_id'}, inplace = True)
 pagos_p = pd.read_excel(pares, 'pagos')
 pagos_p['subs_id'] = pagos_p['subs_id'].apply(lambda x: np.int64(x) if not pd.isna(x) else np.nan)
 pagos_p['subs_id'] = pagos_p['subs_id'].astype('Int64')
+pagos_p['id_videojuego'] = pagos_p['id_videojuego'].apply(lambda x: np.int64(x) if not pd.isna(x) else np.nan)
+pagos_p['id_videojuego'] = pagos_p['id_videojuego'].astype('Int64')
+pagos_p['id_proveedor'] = pagos_p['id_proveedor'].apply(lambda x: np.int64(x) if not pd.isna(x) else np.nan)
+pagos_p['id_proveedor'] = pagos_p['id_proveedor'].astype('Int64')
 
 
 proveedores_p = pd.read_excel(pares, 'proveedores')
@@ -328,20 +332,24 @@ genero_juego.rename(columns = {'nombre':'genero'}, inplace = True)
 """##Create DB común"""
 
 usuarios_i2 = usuarios_i[['uid', 'nombre', 'mail', 'password', 'username', 'fecha_nacimiento']]
-usuarios_i2.sort_values(by=['uid'], ascending = True, inplace=True)
 usuarios_i2.rename(columns = {'uid':'id_usuario'}, inplace = True)
+usuarios_i2.rename(columns = {'password':'contrasena'}, inplace = True)
+usuarios_i2.sort_values(by=['id_usuario'], ascending = True, inplace=True)
 usuarios_i2.reset_index(drop=True, inplace=True)
 usuarios_i2.set_index('id_usuario', inplace=True)
-usuarios_i2.rename(columns = {'password':'contrasena'}, inplace = True)
 
 
 usuarios_p = usuario_actividades_p[['id_usuario', 'nombre', 'mail', 'password', 'username', 'fecha_nacimiento']]
+usuarios_p.rename(columns = {'password':'contrasena'}, inplace = True)
 usuarios_p.sort_values(by=['id_usuario'], ascending = True, inplace=True)
 usuarios_p = usuarios_p[~usuarios_p.duplicated()]
 usuarios_p.reset_index(drop=True, inplace=True)
 usuarios_p.set_index('id_usuario', inplace=True)
 usuarios_p = usuarios_p.drop_duplicates(subset='nombre', keep='first')
-usuarios_p.rename(columns = {'password':'contrasena'}, inplace = True)
+
+usuarios_final = pd.concat([usuarios_i2, usuarios_p])
+usuarios_final.sort_values(by=['id_usuario'], ascending = True, inplace=True)
+usuarios_final = usuarios_final.drop_duplicates(subset='nombre', keep='first')
 
 
 pago_i2 = pago_i[['pago_id', 'monto', 'fecha', 'uid']]
@@ -414,7 +422,14 @@ generos_p2 = generos_p[['genero', 'subgenero']]
 genero_subgenero = pd.concat([generos_i2, generos_p2], ignore_index=True)
 genero_subgenero = genero_subgenero[~genero_subgenero.duplicated()]
 
+generos = genero_subgenero[['genero']]
+generos = generos[~genero_subgenero.duplicated()]
+generos.reset_index(drop=True, inplace=True)
+generos.set_index('genero', inplace=True)
 
+genero_subgenero .reset_index(drop=True, inplace=True)
+genero_subgenero.set_index('genero', inplace=True)
+generos.head(10)
 
 def replace_mistaken_encoding(df):
     # Define mapping for replacements
@@ -483,5 +498,5 @@ pago_a_peli.to_csv('pagos_p.csv', sep=',', encoding='utf-8')
 pago_subs_juego.to_csv('pago_subs_juego.csv', sep=',', encoding='utf-8')                      # FALTA CREATE TABLE
 pago_pun.to_csv('pago_pun.csv', sep=',', encoding='utf-8')                                    # FALTA CREATE TABLE
 
-usuarios_i2.to_csv('usuarios.csv', sep=',', encoding='utf-8')
+usuarios_final.to_csv('usuarios.csv', sep=',', encoding='utf-8')
 genero_subgenero.to_csv('genero_subgenero.csv', sep=',', encoding='utf-8')

@@ -144,7 +144,7 @@ CREATE TABLE usuarios_proveedor_j (
 CREATE TABLE catalogo_j(
     id_juego INT NOT NULL,
     id_prov INT NOT NULL,
-    precio INT NOT NULL,
+    precio INT,
     precio_preorden INT,
 
     PRIMARY KEY (id_juego, id_prov),
