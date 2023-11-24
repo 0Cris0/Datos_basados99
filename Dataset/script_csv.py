@@ -501,3 +501,4 @@ pago_pun.to_csv('pago_pun.csv', sep=',', encoding='utf-8')                      
 
 usuarios_final.to_csv('usuarios.csv', sep=',', encoding='utf-8')
 genero_subgenero.to_csv('genero_subgenero.csv', sep=',', encoding='utf-8')
+generos.to_csv('generos.csv', sep=',', encoding='utf-8')
